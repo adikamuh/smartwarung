@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 03, 2020 at 07:13 AM
+-- Generation Time: Apr 03, 2020 at 09:47 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.1
 
@@ -43,10 +43,9 @@ CREATE TABLE `items` (
 --
 
 INSERT INTO `items` (`id`, `username`, `name`, `stock`, `price`, `description`, `photo`) VALUES
-(2, 'warung100', 'Sabun', 15, 10000, 'bagus', '5a914d6cb15d5c051b3690c5.png'),
-(3, 'warung100', 'Vixal', 10, 1000, 'Enak gurih', '50783ce18615c247f5ad3e8993379ef43ab1ff02-large.png'),
 (4, 'warung100', 'Sosis', 10, 1000, 'Empuk, renyah', 'kisspng-frankfurter-wrstchen-mettwurst-bockwurst-cervela-sausege-5b0bf3b7db7652.4001210415275099438989.png'),
-(5, 'warung100', 'asd', 123, 123, 'ads', '261abaf760242bb1cf00633f9ef99902.jpg,971c9c35a7e2673f49ab28768ac726b3.png');
+(5, 'warung100', 'asd', 500, 123, 'Okedeh mantap euy', '261abaf760242bb1cf00633f9ef99902.jpg,971c9c35a7e2673f49ab28768ac726b3.png'),
+(7, 'warung100', 'Vixal', 10, 15000, 'Mantap', 'ff59902c382b4f213e0a72d98e785ad2.png');
 
 -- --------------------------------------------------------
 
@@ -75,8 +74,10 @@ INSERT INTO `users` (`name`, `username`, `password`, `address`, `city`, `postcod
 ('a', 'abcd', 'e2fc714c4727ee9395f324cd2e7f331f', 'a', 'a', 'a', 'a', 'a@b.c', 0, NULL),
 ('asdf', 'adika', '05c12a287334386c94131ab8aa00d08a', '', '', '', '123', 'a@b.c', 0, NULL),
 ('adikamuh', 'adikamuh', '0b892785ed75d134b5894705d44c0dff', '', '', '', '081', 'a@b.c', 0, NULL),
+('asd', 'asd', '2deb000b57bfac9d72c14d4ed967b572', 'asd', 'ads', 'ad', '123', 'a@b.c', 1, 'e8fd437cd2df8cdb809609feeb73c3ea.png'),
 ('aasd', 'asdf asdf', '979d472a84804b9f647bc185a877a8b5', '', '', '', '234', 'a@b.c', 0, NULL),
 ('zoke', 'oke', 'e2fc714c4727ee9395f324cd2e7f331f', 'oke', 'oke', 'oke', 'okr', 'a@b.c', 0, NULL),
+('Warung Pengkolan', 'pengkolan', 'e2fc714c4727ee9395f324cd2e7f331f', 'skb', 'a', 'a', '08564616794', 'a@b.c', 1, 'cbf60b4fd003950ed26c0a3c17886dca.png'),
 ('warungoke', 'warung1', 'e2fc714c4727ee9395f324cd2e7f331f', 'a', 'a', 'a', 'a', 'a@b.c', 1, NULL),
 ('warung', 'warung100', 'e2fc714c4727ee9395f324cd2e7f331f', 'a', 'a', 'a', '123', 'a@b.c', 1, 'b2d176e25f68c31749431788c793ee12.jpg'),
 ('warteg', 'warung3', 'e2fc714c4727ee9395f324cd2e7f331f', 'a', 'a', 'a', 'a', 'a@b.c', 1, NULL),
@@ -108,7 +109,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Constraints for dumped tables

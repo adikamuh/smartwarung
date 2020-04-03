@@ -39,12 +39,20 @@ class items extends CI_Model {
         );
         
         $this->db->where('id', $id);
-        $this->db->update('items', $data);
+        if($this->db->update('items', $data)){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     public function delete($id){
         $this->db->where('id', $id);
-        $this->db->delete('items');
+        if($this->db->delete('items')){
+            return true;
+        }else{
+            return false;
+        }
     }
 
 }

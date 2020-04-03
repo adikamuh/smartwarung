@@ -65,42 +65,57 @@ class auth extends CI_Controller {
 
 	public function store_warung(){
 		$countfiles = count($_FILES['files']['name']);
-		echo $countfiles;
+		// echo $countfiles;
 		$data_photos = array();
 
-		for($i=0; $i < $countfiles;$i++){
-			if(!empty($_FILES['files']['name'][$i])){
-				$_FILES['photo']['name']    = $_FILES['files']['name'][$i];
-				$_FILES['photo']['type']    = $_FILES['files']['type'][$i];
-				$_FILES['photo']['tmp_name']= $_FILES['files']['tmp_name'][$i];
-				$_FILES['photo']['error']   = $_FILES['files']['error'][$i];
-				$_FILES['photo']['size']    = $_FILES['files']['size'][$i];
+		$this->form_validation->set_rules('name','Full Name', 'required');
+		$this->form_validation->set_rules('username','Username', 'required|alpha_dash|is_unique[users.username]');
+		$this->form_validation->set_rules('phone','Phone', 'required|numeric');
+		$this->form_validation->set_rules('email','E-mail', 'required|valid_email');
 
-				$config['upload_path']      = 'assets/uploads/';
-				$config['allowed_types']    = 'jpg|jpeg|png';
-				$config['max_size']         = '5000';
-				$config['encrypt_name'] 	= true;
-				// $config['file_name']        = $_FILES['files']['name'][$i];
-
-				$this->load->library('upload',$config);
-
-				if($this->upload->do_upload('photo')){
-					$upload_data = $this->upload->data();
-					$data_photos[$i] = $upload_data['file_name'];
-					// echo $countfiles;
+		if($this->form_validation->run() == true){
+			for($i=0; $i < $countfiles;$i++){
+				if(!empty($_FILES['files']['name'][$i])){
+					$_FILES['photo']['name']    = $_FILES['files']['name'][$i];
+					$_FILES['photo']['type']    = $_FILES['files']['type'][$i];
+					$_FILES['photo']['tmp_name']= $_FILES['files']['tmp_name'][$i];
+					$_FILES['photo']['error']   = $_FILES['files']['error'][$i];
+					$_FILES['photo']['size']    = $_FILES['files']['size'][$i];
+	
+					$config['upload_path']      = 'assets/uploads/';
+					$config['allowed_types']    = 'jpg|jpeg|png';
+					$config['max_size']         = '5000';
+					$config['encrypt_name'] 	= true;
+					// $config['file_name']        = $_FILES['files']['name'][$i];
+	
+					$this->load->library('upload',$config);
+	
+					if($this->upload->do_upload('photo')){
+						$upload_data = $this->upload->data();
+						$data_photos[$i] = $upload_data['file_name'];
+						// echo $countfiles;
+					}
 				}
 			}
-		}
-
-		if(!empty($data_photos)){
-			$data_photo = implode(',',$data_photos);
-			echo $data_photo;
-
-			$this->users->store_warung($this->input->post('username'),$data_photo);
-			redirect('auth/login', 'refresh');
-		}
-		
-		
+	
+			if(!empty($data_photos)){
+				$data_photo = implode(',',$data_photos);
+				// echo $data_photo;
+	
+				$this->users->store_warung($this->input->post('username'),$data_photo);
+				
+				$this->session->set_flashdata('success', 'Akun Anda berhasil dibuat!');
+				redirect('auth/login', 'refresh');
+			}else{
+				$this->session->set_flashdata('errors', 'Register gagal!');
+				redirect('auth/register_warung', 'refresh');
+			}
+		}else{
+			$this->session->set_flashdata('errors', 'Register gagal!');
+			$this->load->view('template/header');
+			$this->load->view('auth/register_warung');
+			$this->load->view('template/footer');
+		}		
 	}
 
 	public function verif(){
@@ -110,6 +125,7 @@ class auth extends CI_Controller {
 			
 			$this->session->set_userdata('name',$data['user']['name']);
 			$this->session->set_userdata('username', $data['user']['username']);
+			$this->session->set_userdata('role', $data['user']['role']);
 			
 			redirect('home', 'refresh');
 		}

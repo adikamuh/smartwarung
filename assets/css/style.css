@@ -8944,9 +8944,9 @@ h1, h2, h3, h4, h5,
       color: #000000; }
       .table tbody tr td.product-remove a:hover {
         border: 1px solid #82ae46;
-        background: #82ae46; }
+        background: #ff0000; }
         .table tbody tr td.product-remove a:hover span {
-          color: #fff; }
+          color: #ff0000; }
     .table tbody tr td.quantity {
       width: 20%; }
     .table tbody tr td.image-prod .img {

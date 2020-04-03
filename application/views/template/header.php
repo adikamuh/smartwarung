@@ -60,6 +60,7 @@
             <?php elseif($this->session->userdata('name') != null): ?>
               <li class="nav-item cta cta-colored dropdown"><a href="<?php echo site_url('warung') ?>" class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="icon-user"></span> <?php echo $this->session->userdata('name') ?></a>
               <div class="dropdown-menu" aria-labelledby="dropdown04">
+              	<a class="dropdown-item" href="<?php echo site_url('warung') ?>" class="text-danger">Profile</a>
               	<a class="dropdown-item" href="<?php echo site_url('auth/logout') ?>" class="text-danger" style="color:red;">Logout</a>
               	<!-- <a class="dropdown-item" href="wishlist.html">Wishlist</a>
                 <a class="dropdown-item" href="product-single.html">Single Product</a>

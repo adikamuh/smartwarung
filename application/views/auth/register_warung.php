@@ -1,5 +1,15 @@
 <section class="ftco-section">
     <div class="container">
+		<?php if($this->session->flashdata('errors') != ''): ?>
+		<div class="alert alert-danger" role="alert">
+		<?php echo $this->session->flashdata('errors'); ?>
+		</div>
+		<?php endif; ?>
+		<?php if($this->session->flashdata('success')!= ''): ?>
+		<div class="alert alert-success" role="alert">
+		<?php echo $this->session->flashdata('success') ?>
+		</div>
+		<?php endif; ?>
         <div class="row justify-content-center">
           <div class="col-xl-7 ftco-animate">
                 <form action="<?php echo site_url('auth/store_warung') ?>" class="billing-form" method="post" enctype='multipart/form-data'> 

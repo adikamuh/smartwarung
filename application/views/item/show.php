@@ -1,20 +1,30 @@
-<div class="hero-wrap hero-bread" style="background-image: url('images/bg_1.jpg');">
+<!-- <div class="hero-wrap hero-bread" style="background-image: url('images/bg_1.jpg');">
     <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center">
             <div class="col-md-9 ftco-animate text-center">
-                <!-- <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> <span class="mr-2"><a href="index.html">Product</a></span> <span>Product Single</span></p>
-                <h1 class="mb-0 bread">Product Single</h1> -->
+                <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> <span class="mr-2"><a href="index.html">Product</a></span> <span>Product Single</span></p>
+                <h1 class="mb-0 bread">Product Single</h1>
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
 <section class="ftco-section">
     <div class="container">
+        <?php if($this->session->flashdata('errors') != ''): ?>
+        <div class="alert alert-danger" role="alert">
+          <?php echo $this->session->flashdata('errors'); ?>
+        </div>
+        <?php endif; ?>
+        <?php if($this->session->flashdata('success')!= ''): ?>
+        <div class="alert alert-success" role="alert">
+          <?php echo $this->session->flashdata('success') ?>
+        </div>
+        <?php endif; ?>
         <div class="row">
             <div class="col-lg-6 mb-5 ftco-animate">
                 <div class="owl-carousel" >
-                    <?php $photos = explode(',',$food['photo']);foreach($photos as $photo): ?>
+                    <?php $photos = explode(',',$item['photo']);foreach($photos as $photo): ?>
                     <div class="item" width="480px" height="480px" >
                         <a href="<?php echo base_url('assets/uploads/').$photo ?>" class="image-popup"><img style="width: auto; height:500px;" src="<?php echo base_url('assets/uploads/').$photo ?>" class=""></a>
                     </div>
@@ -22,7 +32,7 @@
                 </div>
             </div>
             <div class="col-lg-6 product-details pl-md-5 ftco-animate">
-                <h3 class="h3" style="font-weight: bold;"><?php echo $food['name'] ?></h3>
+                <h3 class="h3" style="font-weight: bold;"><?php echo $item['name'] ?></h3>
                 <!-- <div class="rating d-flex">
                     <p class="text-left mr-4">
                         <a href="#" class="mr-2">5.0</a>
@@ -39,8 +49,9 @@
                         <a href="#" class="mr-2" style="color: #000;">500 <span style="color: #bbb;">Sold</span></a>
                     </p>
                 </div> -->
-                <p class="price" ><span style="font-size: 20px;"><?php echo "Rp ".number_format($food['price'], 0, ".", ".") ?></span></p>
-                <p><?php echo $food['description'] ?></p>
+                <p class="price" ><span style="font-size: 20px;"><?php echo "Rp ".number_format($item['price'], 0, ".", ".") ?></span></p>
+                <p><?php echo $item['description'] ?></p>
+                <?php if($this->session->userdata('role') == 0): ?>
                     <div class="row mt-4">
                         <div class="w-100"></div>
                         <div class="input-group col-md-6 d-flex mb-3">
@@ -58,16 +69,29 @@
                         </div>
                         <div class="w-100"></div>
                         <div class="col-md-12">
-                            <p style="color: #000;"><?php echo $food['stock'] ?> portion available</p>
+                            <p style="color: #000;"><?php echo $item['stock'] ?> Stocks available</p>
                         </div>
                     </div>
                     <p><a href="cart.html" class="btn btn-black py-3 px-5">Add to Cart</a></p>
+                    <?php elseif($this->session->userdata('role') == 1): ?>
+                    <div class="row mt-4">
+                        <div class="w-100"></div>
+                        <div class="col-md-12">
+                            <p style="color: #000;"><?php echo $item['stock'] ?> Stocks available</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <p><a href="<?php echo site_url('item/edit/').$item['id'] ?>" class="btn btn-warning py-2 px-5">Edit</a></p>
+                        <p class="ml-3"><a href="<?php echo site_url('item/delete/').$item['id'] ?>" onclick="return confirm('Apakah Anda yakin akan menghapus?');" class="btn btn-danger py-2 px-5">Hapus</a></p>
+
+                    </div>
+                    <?php endif;?>
             </div>
         </div>
     </div>
 </section>
 
-<section class="ftco-section">
+<!-- <section class="ftco-section">
     <div class="container">
             <div class="row justify-content-center mb-3 pb-3">
         <div class="col-md-12 heading-section text-center ftco-animate">
@@ -194,4 +218,4 @@
             </div>
         </div>
     </div>
-</section>
+</section> -->

@@ -66,13 +66,19 @@ class item extends CI_Controller {
                 $data_photo = implode(',',$data_photos);
 
                 $this->items->store($this->session->userdata('username'),$data_photo);
-                echo "end";
+                
+                $this->session->set_flashdata('success', 'Barang telah berhasil ditambahkan');
+                redirect('warung', 'refresh');
+            }else{
+                $this->load->view('template/header');
+                $this->load->view('item/create');
+                $this->load->view('template/footer');
             }
         }
     }
 
     public function show($id){
-        $data['food'] = $this->items->get_one_id($id);
+        $data['item'] = $this->items->get_one_id($id);
 
         $this->load->view('template/header');
         $this->load->view('item/show',$data);
@@ -89,15 +95,26 @@ class item extends CI_Controller {
     }
 
     public function update($id){
-        $this->items->update($id);
 
-        redirect('warung', 'refresh');
+        if($this->items->update($id)){
+            $this->session->set_flashdata('success', 'Barang telah berhasil diperbarui');
+            redirect('item/show/'.$id);
+        }else{
+            $this->session->set_flashdata('errors', 'Barang tidak berhasil diperbarui!');
+            redirect('warung', 'refresh');
+        }
+
     }
 
     public function delete($id){
-        $this->items->delete($id);
+        if($this->items->delete($id)){
+            $this->session->set_flashdata('success', 'Barang telah berhasil dihapus');
+            redirect('warung', 'refresh');
+        }else{
+            $this->session->set_flashdata('errors', 'Barang gagal dihapus');
+            redirect('warung', 'refresh');
+        }
 
-        redirect('warung', 'refresh');
     }
 }
 ?>

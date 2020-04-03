@@ -11,6 +11,16 @@
 
     <section class="ftco-section ftco-cart">
 			<div class="container">
+            <?php if($this->session->flashdata('errors') != ''): ?>
+            <div class="alert alert-danger" role="alert">
+            <?php echo $this->session->flashdata('errors'); ?>
+            </div>
+            <?php endif; ?>
+            <?php if($this->session->flashdata('success')!= ''): ?>
+            <div class="alert alert-success" role="alert">
+            <?php echo $this->session->flashdata('success') ?>
+            </div>
+            <?php endif; ?>
 				<div class="row">
     			<div class="col-md-12 ftco-animate">
     				<div class="cart-list">
@@ -28,7 +38,7 @@
 						    <tbody>
                             <?php foreach($items as $item): ?>
 						      <tr class="text-center">
-						        <td class="product-remove"><a href="<?php echo site_url('item/delete/').$item['id'] ?>"><span class="ion-ios-close"></span></a></td>
+						        <td class=""><a class="btn btn-sm btn-danger px-2" onclick="return confirm('Apakah Anda yakin akan menghapus?');" href="<?php echo site_url('item/delete/').$item['id'] ?>"><span class="ion-ios-close"></span></a></td>
 						        
 						        <td class="image-prod"><div class="img" style="background-image:url(<?php $photos = explode(',',$item['photo']); echo base_url('assets/uploads/').$photos[0]?>);"></div></td>
 						        
@@ -45,7 +55,7 @@
 					          </td>
 						        
 						        <td class="total">
-                                    <a href="<?php echo site_url('item/edit/').$item['id'] ?>" class="btn btn-sm btn-warning"> Edit </a>
+                                    <a href="<?php echo site_url('item/edit/').$item['id'] ?>" class="btn btn-sm btn-warning px-3"> Edit </a>
                                 </td>
                               </tr><!-- END TR-->
                             <?php endforeach; ?>
