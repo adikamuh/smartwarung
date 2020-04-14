@@ -8,9 +8,6 @@ class users extends CI_Model {
                 'name' => $this->input->post('name'),
                 'username' => $this->input->post('username'),
                 'password' => md5($this->input->post('password')),
-                'address' => $this->input->post('address'),
-                'city' => $this->input->post('city'),
-                'postcode' => $this->input->post('postcode'),
                 'phone' => $this->input->post('phone'),
                 'email' => $this->input->post('email'),
                 'role' => 0
@@ -32,9 +29,6 @@ class users extends CI_Model {
                 'name' => $this->input->post('name'),
                 'username' => $this->input->post('username'),
                 'password' => md5($this->input->post('password')),
-                'address' => $this->input->post('address'),
-                'city' => $this->input->post('city'),
-                'postcode' => $this->input->post('postcode'),
                 'phone' => $this->input->post('phone'),
                 'email' => $this->input->post('email'),
                 'role' => 1,
@@ -42,7 +36,16 @@ class users extends CI_Model {
 
             );
 
-            return $this->db->insert('users',$data);
+            $data_warung = array(
+                'address' => $this->input->post('address'),
+                'place_id' => $this->input->post('place_id'),
+                'username' => $this->input->post('username'),
+                'status' => 'Belum diverifikasi'
+            );
+
+            $this->db->insert('users',$data);
+            $this->db->insert('warungs',$data_warung);
+            return;
         }
     }
     

@@ -12,12 +12,12 @@
 <section class="ftco-section">
     <div class="container">
         <?php if($this->session->flashdata('errors') != ''): ?>
-        <div class="alert alert-danger" role="alert">
+        <div class="alert alert-danger text-center" role="alert">
           <?php echo $this->session->flashdata('errors'); ?>
         </div>
         <?php endif; ?>
         <?php if($this->session->flashdata('success')!= ''): ?>
-        <div class="alert alert-success" role="alert">
+        <div class="alert alert-success text-center" role="alert">
           <?php echo $this->session->flashdata('success') ?>
         </div>
         <?php endif; ?>
@@ -54,25 +54,28 @@
                 <?php if($this->session->userdata('role') == 0): ?>
                     <div class="row mt-4">
                         <div class="w-100"></div>
-                        <div class="input-group col-md-6 d-flex mb-3">
-                            <span class="input-group-btn mr-2">
-                                <button type="button" class="quantity-left-minus btn"  data-type="minus" data-field="">
-                                <i class="ion-ios-remove"></i>
-                                </button>
-                            </span>
-                            <input type="text" id="quantity" name="quantity" class="form-control input-number" value="1" min="1" max="100">
-                            <span class="input-group-btn ml-2">
-                                <button type="button" class="quantity-right-plus btn" data-type="plus" data-field="">
-                                <i class="ion-ios-add"></i>
-                                </button>
-                            </span>
+                        <div class="input-group col-md-7 mb-3">
+                            <form action="<?php echo site_url('cart/store/').$item['id'] ?>" class="billing-form" method="post">
+                            <div class="w-100"></div>
+                            <div class="form-row">
+
+                                <div class="col-md-3">
+                                    <input type="text" id="quantity" name="quantity" class="form-control input-number" value="1" min="1" max="100">
+                                </div>
+                                <div class="col-md-3 ml-3 my-auto">
+                                    <input type="submit" class="btn btn-black py-2 px-3" value="Add to cart">
+                                </div>
+                                
+                            </div>
+                            <div class="w-100"></div>
+                            </form>
                         </div>
                         <div class="w-100"></div>
                         <div class="col-md-12">
                             <p style="color: #000;"><?php echo $item['stock'] ?> Stocks available</p>
                         </div>
                     </div>
-                    <p><a href="cart.html" class="btn btn-black py-3 px-5">Add to Cart</a></p>
+                    <!-- <p><a href="cart.html" class="btn btn-black py-3 px-5">Add to Cart</a></p> -->
                     <?php elseif($this->session->userdata('role') == 1): ?>
                     <div class="row mt-4">
                         <div class="w-100"></div>

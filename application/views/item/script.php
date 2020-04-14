@@ -3,6 +3,7 @@
         $('.owl-carousel').owlCarousel({
             margin:10,
             autoWidth:true,
+            // autoHeigth:true,
             items:1
         });
     });

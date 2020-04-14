@@ -32,27 +32,34 @@
 					</div>
 					<!-- ini nanti lokasi -->
 					<div class="w-100"></div>
-					<div class="w-100"></div>
-					<div class="col-md-12">
-						<div class="form-group">
-						<label for="streetaddress">Address</label>
-						<input type="text" class="form-control" name="address" placeholder="House number and street name">
-					</div>
-					</div>
-					<div class="w-100"></div>
-					<div class="col-md-6">
-						<div class="form-group">
-						<label for="towncity">City</label>
-						<input type="text" name="city" class="form-control" placeholder="">
-					</div>
-					</div>
-					<div class="col-md-6">
-						<div class="form-group">
-							<label for="postcodezip">Post Code</label>
-							<input type="text" name="postcode" class="form-control" placeholder="">
+					<div class="col-md-12 pb-3">
+						<div id="map" style="width: 100%; height: 400px;"></div>
+						<!-- <div id="type-selector" class="pac-controls">
+							<input type="radio" name="type" id="changetype-all" checked="checked">
+							<label for="changetype-all">All</label>
+
+							<input type="radio" name="type" id="changetype-establishment">
+							<label for="changetype-establishment">Establishments</label>
+
+							<input type="radio" name="type" id="changetype-address">
+							<label for="changetype-address">Addresses</label>
+
+							<input type="radio" name="type" id="changetype-geocode">
+							<label for="changetype-geocode">Geocodes</label>
+							</div>
+							<div id="strict-bounds-selector" class="pac-controls">
+							<input type="checkbox" id="use-strict-bounds" value="">
+							<label for="use-strict-bounds">Strict Bounds</label>
+							</div>
+						</div> -->
+						<div id="pac-container col-md-12">
+							<div class="form-group pt-3">
+								<label for="Address">Alamat</label>
+								<input id="pac-input" class="form-control" type="text" name="address" placeholder="Enter a location">
+								<input type="text" id="place" name="place_id" hidden>
+							</div>
 						</div>
 					</div>
-					<!-- lokasi end -->
 					<div class="w-100"></div>
 					<div class="col-md-6">
 					<div class="form-group">
@@ -70,7 +77,7 @@
 					<div class="col-md-12">
 						<div class="form-group">
 							<label for="photo">Add photo</label>
-							<input type="file" name="files[]" multiple class="form-control my-2" style="padding-top: 15px;">
+							<input type="file" name="files[]" multiple class="form-control my-2" style="padding-top: 15px;" required>
 							<!-- <input type="file" name="photo[]" class="form-control my-2" style="padding-top: 15px;">
 							<input type="file" name="photo[]" class="form-control my-2" style="padding-top: 15px;"> -->
 						</div>

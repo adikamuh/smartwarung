@@ -7,6 +7,7 @@ class items extends CI_Model {
         $data = array(
             'username'  => $username,
             'name'      => $this->input->post('name'),
+            'category'  => $this->input->post('category'),
             'stock'     => $this->input->post('stock'),
             'price'     => $this->input->post('price'),
             'description'=> $this->input->post('description'),
@@ -35,7 +36,8 @@ class items extends CI_Model {
             'name'      => $this->input->post('name'),
             'stock'     => $this->input->post('stock'),
             'price'     => $this->input->post('price'),
-            'description'=> $this->input->post('description')
+            'description'=> $this->input->post('description'),
+            'category'  => $this->input->post('category')
         );
         
         $this->db->where('id', $id);

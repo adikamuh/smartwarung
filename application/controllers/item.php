@@ -7,6 +7,7 @@ class item extends CI_Controller {
         parent::__construct();
 
         $this->load->model('items');
+        $this->load->model('categories');
         $this->load->library('form_validation');
     }
 
@@ -19,8 +20,10 @@ class item extends CI_Controller {
     public function create(){
         // nama,deskripsi,harga,stok,foto
 
+        $data['categories'] = $this->categories->get_all();
+
         $this->load->view('template/header');
-        $this->load->view('item/create');
+        $this->load->view('item/create',$data);
         $this->load->view('template/footer');
     }
 
@@ -88,6 +91,7 @@ class item extends CI_Controller {
 
     public function edit($id){
         $data['item'] = $this->items->get_one_id($id);
+        $data['categories'] = $this->categories->get_all();
 
         $this->load->view('template/header');
         $this->load->view('item/edit',$data);

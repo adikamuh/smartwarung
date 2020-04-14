@@ -32,41 +32,20 @@
                     <label for="username">Password</label>
                     <input type="password" class="form-control" name="password" placeholder="Password">
                 </div>
-                <div class="w-100"></div>
-		            <div class="w-100"></div>
-		            <div class="col-md-12">
-		            	<div class="form-group">
-	                	<label for="streetaddress">Address</label>
-	                  <input type="text" class="form-control" name="address" placeholder="House number and street name">
-	                </div>
-		            </div>
-		            <div class="w-100"></div>
-		            <div class="col-md-6">
-		            	<div class="form-group">
-	                	<label for="towncity">City</label>
-	                  <input type="text" name="city" class="form-control" placeholder="">
-	                </div>
-		            </div>
-		            <div class="col-md-6">
-		            	<div class="form-group">
-		            		<label for="postcodezip">Post Code</label>
-                            <input type="text" name="postcode" class="form-control" placeholder="">
-                        </div>
-		            </div>
-		            <div class="w-100"></div>
-		            <div class="col-md-6">
-	                <div class="form-group">
-	                	<label for="phone">Phone</label>
-						<input type="text" class="form-control" name="phone" placeholder="">
-						<?php echo form_error('phone', '<small class="text-danger error">', '</small>'); ?>
-	                </div>
-	              </div>
-	              <div class="col-md-6">
-	                <div class="form-group">
-	                	<label for="emailaddress">Email Address</label>
-						<input type="email" name="email" class="form-control" placeholder="">
-						<?php echo form_error('email', '<small class="text-danger error">', '</small>'); ?>
-	                </div>
+				<div class="w-100"></div>
+				<div class="col-md-6">
+				<div class="form-group">
+					<label for="phone">Phone</label>
+					<input type="text" class="form-control" name="phone" placeholder="">
+					<?php echo form_error('phone', '<small class="text-danger error">', '</small>'); ?>
+				</div>
+				</div>
+				<div class="col-md-6">
+				<div class="form-group">
+					<label for="emailaddress">Email Address</label>
+					<input type="email" name="email" class="form-control" placeholder="">
+					<?php echo form_error('email', '<small class="text-danger error">', '</small>'); ?>
+				</div>
                 </div>
                 <div class="w-100"></div>
                 <div class="offset-md-4 col-md-2 mt-4">

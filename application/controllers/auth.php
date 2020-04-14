@@ -32,6 +32,7 @@ class auth extends CI_Controller {
 		$this->load->view('template/header');
 		$this->load->view('auth/register_warung');
 		$this->load->view('template/footer');
+		$this->load->view('auth/script');
 	}
     
     public function store()
@@ -69,6 +70,7 @@ class auth extends CI_Controller {
 		$data_photos = array();
 
 		$this->form_validation->set_rules('name','Full Name', 'required');
+		$this->form_validation->set_rules('address','Alamat', 'required');
 		$this->form_validation->set_rules('username','Username', 'required|alpha_dash|is_unique[users.username]');
 		$this->form_validation->set_rules('phone','Phone', 'required|numeric');
 		$this->form_validation->set_rules('email','E-mail', 'required|valid_email');
@@ -128,6 +130,10 @@ class auth extends CI_Controller {
 			$this->session->set_userdata('role', $data['user']['role']);
 			
 			redirect('home', 'refresh');
+		}else{
+			$this->session->set_flashdata('errors','Invalid username or password');
+
+			redirect('auth/login', 'refresh');
 		}
 
 	}
@@ -139,6 +145,12 @@ class auth extends CI_Controller {
 		$this->load->view('auth/edit',$data);
 		$this->load->view('template/footer');
 
+	}
+
+	public function tes(){
+
+		$this->load->view('auth/tes');
+		$this->load->view('auth/script');
 	}
 
 	public function logout(){

@@ -1,12 +1,12 @@
 <section class="ftco-section">
     <div class="container">
         <?php if($this->session->flashdata('errors') != ''): ?>
-        <div class="alert alert-danger" role="alert">
+        <div class="alert alert-danger text-center" role="alert">
         <?php echo $this->session->flashdata('errors'); ?>
         </div>
         <?php endif; ?>
         <?php if($this->session->flashdata('success')!= ''): ?>
-        <div class="alert alert-success" role="alert">
+        <div class="alert alert-success text-center" role="alert">
         <?php echo $this->session->flashdata('success') ?>
         </div>
         <?php endif; ?>

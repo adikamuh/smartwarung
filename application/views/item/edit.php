@@ -3,7 +3,7 @@
         <div class="row justify-content-center">
           <div class="col-xl-7 ftco-animate">
                 <form action="<?php echo site_url('item/update/').$item['id'] ?>" class="billing-form" method="post" enctype='multipart/form-data'> 
-                <h3 class="mb-4 billing-heading">Tambah Barang</h3>
+                <h3 class="mb-4 billing-heading">Edit Barang</h3>
 	          	<div class="row align-items-end">
 	          		<div class="col-md-12">
 						<div class="form-group">
@@ -12,6 +12,21 @@
                             <?php echo form_error('name', '<small class="text-danger error">', '</small>'); ?>
 						</div>
 					</div>
+					<div class="w-100"></div>
+					<div class="col-md-12">
+		            	<div class="form-group">
+		            		<label for="categories">Kategori</label>
+		            		<div class="select-wrap">
+								<div class="icon"><span class="ion-ios-arrow-down"></span></div>
+								<select name="category" id="" class="form-control">
+									<option value="">Pilih Kategori</option>
+									<?php foreach($categories as $category): ?>
+									<option value="<?php echo $category['id'] ?>" <?php echo ($item['category'] == $category['id'] ? 'selected' :'') ?> ><?php echo $category['name'] ?></option>
+									<?php endforeach; ?>
+								</select>
+								</div>
+							</div>
+						</div>
 					<div class="w-100"></div>
 					<div class="col-md-6 pb-3">
 						<label for="username">Stok</label>

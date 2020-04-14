@@ -13,6 +13,21 @@
 						</div>
 					</div>
 					<div class="w-100"></div>
+					<div class="col-md-12">
+		            	<div class="form-group">
+		            		<label for="categories">Kategori</label>
+		            		<div class="select-wrap">
+								<div class="icon"><span class="ion-ios-arrow-down"></span></div>
+								<select name="category" id="" class="form-control">
+									<option value="">Pilih Kategori</option>
+									<?php foreach($categories as $category): ?>
+									<option value="<?php echo $category['id'] ?>"><?php echo $category['name'] ?></option>
+									<?php endforeach; ?>
+								</select>
+								</div>
+							</div>
+						</div>
+					<div class="w-100"></div>
 					<div class="col-md-6 pb-3">
 						<label for="username">Stok</label>
                         <input type="number" class="form-control" name="stock" placeholder="Stok">
