@@ -46,7 +46,7 @@ class cart extends CI_Controller {
         $data['cart'] = $this->carts->get_all($this->session->userdata('username'));
 
         $count = count($data['cart']);
-        echo($count.'</br>');
+        // echo($count.'</br>');
 
         for($i=0;$i<$count;$i++){
             $quantity   = $_POST['quantity'][$i];

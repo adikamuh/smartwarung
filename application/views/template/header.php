@@ -58,9 +58,9 @@
             <?php if($this->session->userdata('role') == null): ?>
               <li class="nav-item cta"><a href="<?php echo site_url('auth/login') ?>" class="nav-link"><span class="icon-user"></span> Login</a></li>
             <?php elseif($this->session->userdata('role') == 1): ?>
-              <li class="nav-item cta cta-colored dropdown"><a href="<?php echo site_url('warung') ?>" class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="icon-user"></span> <?php echo $this->session->userdata('name') ?></a>
+              <li class="nav-item cta cta-colored dropdown"><a href="<?php echo site_url('profile') ?>" class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="icon-user"></span> <?php echo $this->session->userdata('name') ?></a>
               <div class="dropdown-menu" aria-labelledby="dropdown04">
-              	<a class="dropdown-item" href="<?php echo site_url('warung') ?>" class="text-danger">Profile</a>
+              	<a class="dropdown-item" href="<?php echo site_url('profile') ?>" class="text-danger">Profile</a>
               	<a class="dropdown-item" href="<?php echo site_url('item/create') ?>" class="text-danger">Tambah Barang</a>
               	<a class="dropdown-item" href="<?php echo site_url('auth/logout') ?>" class="text-danger" style="color:red;">Logout</a>
               	<!-- <a class="dropdown-item" href="wishlist.html">Wishlist</a>
@@ -70,7 +70,7 @@
               </div>
               </li>
             <?php elseif($this->session->userdata('role') == 0): ?>
-              <li class="nav-item dropdown"><a href="<?php echo site_url('warung') ?>" class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Kategori</a>
+              <li class="nav-item dropdown"><a href="<?php echo site_url('category') ?>" class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Kategori</a>
               <div class="dropdown-menu" aria-labelledby="dropdown04">
                 <?php $categories = $this->categories->get_all();foreach($categories as $category): ?>
               	<a class="dropdown-item <?php if($category['name']=='Other'){echo 'text-success';}; ?>" href="<?php echo site_url('category/show/').$category['id'] ?>"><?php echo $category['name'] ?></a>
@@ -78,9 +78,9 @@
               </div>
               </li>
               <li class="nav-item cta cta-colored mr-2"><a href="<?php echo site_url('cart') ?>" class="nav-link"><span class="icon-shopping_cart"></span>[<?php echo count($this->carts->get_all($this->session->userdata('username'))) ?>]</a></li>
-              <li class="nav-item cta cta-colored dropdown"><a href="<?php echo site_url('warung') ?>" class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="icon-user"></span> <?php echo $this->session->userdata('name') ?></a>
+              <li class="nav-item cta cta-colored dropdown"><a href="<?php echo site_url('profile') ?>" class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="icon-user"></span> <?php echo $this->session->userdata('name') ?></a>
               <div class="dropdown-menu" aria-labelledby="dropdown04">
-              	<a class="dropdown-item" href="<?php echo site_url('warung') ?>" class="text-danger">Profile</a>
+              	<a class="dropdown-item" href="<?php echo site_url('profile') ?>" class="text-danger">Profile</a>
               	<!-- <a class="dropdown-item" href="<?php echo site_url('item/create') ?>" class="text-danger">Tambah Barang</a> -->
               	<a class="dropdown-item" href="<?php echo site_url('auth/logout') ?>" class="text-danger" style="color:red;">Logout</a>
               	<!-- <a class="dropdown-item" href="wishlist.html">Wishlist</a>

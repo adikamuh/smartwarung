@@ -3,7 +3,7 @@
 function initMap() {
   var map = new google.maps.Map(document.getElementById('map'), {
     mapTypeControl: false,
-    center: {lat: -33.8688, lng: 151.2195},
+    center: {lat: -6.974028, lng: 107.6305287},
     zoom: 13
   });
 
@@ -99,7 +99,9 @@ AutocompleteDirectionsHandler.prototype.route = function() {
       {
         origin: {'placeId': this.originPlaceId},
         destination: {'placeId': this.destinationPlaceId},
-        travelMode: this.travelMode
+        travelMode: this.travelMode,
+        avoidHighways: false,
+        avoidTolls: true
       },
       function(response, status) {
         if (status === 'OK') {
@@ -112,14 +114,16 @@ AutocompleteDirectionsHandler.prototype.route = function() {
           }
 
           var newDistance = (total/1000);
-          document.getElementById('distance').value   = newDistance.toFixed(1);
+          document.getElementById('distance').value   = newDistance.toFixed(1).replace(",", ".");
 
           var deliveryFee = ((total/1000).toFixed(1)*2500).toFixed(0);
           document.getElementById('ongkir').innerHTML = formatNumber(deliveryFee);
+          document.getElementById('delivery_fee').value = deliveryFee;
 
           var billing    = document.getElementById('billing').value;
           var finalTotal = parseInt(billing) + parseInt(deliveryFee);
-          document.getElementById('total').innerHTML  = formatNumber(finalTotal)
+          document.getElementById('total').innerHTML  = formatNumber(finalTotal);
+          document.getElementById('total_price').value = finalTotal;
 
         } else {
           window.alert('Directions request failed due to ' + status);

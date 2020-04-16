@@ -15,7 +15,7 @@ class carts extends CI_Model {
         $this->db->select(
             'carts.id,carts.username, 
             cart_details.item,cart_details.quantity, 
-            items.price,items.description,items.photo,items.name,items.username username_warung'
+            items.id item_id,items.price,items.description,items.photo,items.name,items.username username_warung'
         );
         $this->db->from('carts');
         $this->db->join('cart_details', 'carts.id = cart_details.id');
