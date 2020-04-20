@@ -55,6 +55,8 @@ class invoices extends CI_Model {
             $this->db->where('invoices.user',$username);
         }elseif($this->session->userdata('role') == 1){
             $this->db->where('invoices.warung',$username);
+        }else {
+            return null;
         };
         $this->db->group_by('invoices.id');
 

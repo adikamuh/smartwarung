@@ -128,8 +128,12 @@ class auth extends CI_Controller {
 			$this->session->set_userdata('name',$data['user']['name']);
 			$this->session->set_userdata('username', $data['user']['username']);
 			$this->session->set_userdata('role', $data['user']['role']);
-			
-			redirect('home', 'refresh');
+
+			if($this->session->userdata('role') == 99){
+				redirect('admin');
+			}else{
+				redirect('home', 'refresh');
+			}
 		}else{
 			$this->session->set_flashdata('errors','Invalid username or password');
 

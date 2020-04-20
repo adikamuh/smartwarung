@@ -1,3 +1,4 @@
+<?PHP $this->session->set_userdata('url',$_SERVER['HTTP_REFERER']) ?>
 <section class="ftco-section">
     <div class="container">
         <div class="row justify-content-center">

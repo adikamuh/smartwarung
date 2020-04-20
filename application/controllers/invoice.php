@@ -40,6 +40,17 @@ class invoice extends CI_Controller{
         redirect('profile/order');
     }
 
+    public function update_to_done($id){
+        $data = array(
+            'status' => 'Sudah diterima'
+        );
+
+        $this->db->where('id',$id);
+        $this->db->update('invoices',$data);
+
+        redirect('profile/order');
+    }
+
     public function cancel($id){
         $data = array(
             'status' => 'Dibatalkan'

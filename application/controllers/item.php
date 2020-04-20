@@ -102,7 +102,10 @@ class item extends CI_Controller {
 
         if($this->items->update($id)){
             $this->session->set_flashdata('success', 'Barang telah berhasil diperbarui');
-            redirect('item/show/'.$id);
+
+            // print_r($this->session->userdata('url'));
+            // header('Location: ' . $_SERVER['REQUEST_URI']);
+            redirect($this->session->userdata('url'));
         }else{
             $this->session->set_flashdata('errors', 'Barang tidak berhasil diperbarui!');
             redirect('warung', 'refresh');

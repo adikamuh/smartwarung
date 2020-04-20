@@ -74,16 +74,31 @@
 
                 dataFooter = "";
                 var confirm = "return confirm('Apakah Anda yakin akan membatalkan?')";
-                dataFooter +=
                 <?php if($this->session->userdata('role') == 0): ?>
-                '<button type="button" class="btn btn-sm btn-secondary px-3" data-dismiss="modal">Close</button>';
+                    if(response[0]['invoice_status'] === "Menunggu proses penjual"){
+                        dataFooter += '<a href="<?php echo site_url('invoice/cancel/') ?>'+response[0]['invoice_id']+'" class="btn btn-sm btn-danger px-3" onclick="'+confirm+'">Batalkan</a>';
+                    }else if(response[0]['invoice_status'] === "Sedang dikirim"){
+                        dataFooter += '<a type="button" href="<?php echo site_url('invoice/update_to_done/')?>'+response[0]['invoice_id']+'" class="btn btn-sm btn-primary px-3">Terima barang</a>';
+                    }else if(response[0]['invoice_status'] === "Sudah diterima"){
+                        dataFooter += '<button type="button" class="btn btn-sm btn-secondary px-3" data-dismiss="modal">Close</button>';
+                    }else if(response[0]['invoice_status'] === "Dibatalkan"){
+                        dataFooter += '<button type="button" class="btn btn-sm btn-secondary px-3" data-dismiss="modal">Close</button>';
+                    }
                 <?php elseif($this->session->userdata('role') == 1): ?>
-                '<a href="<?php echo site_url('invoice/cancel/') ?>'+response[0]['invoice_id']+'" class="btn btn-sm btn-danger px-3" onclick="'+confirm+'">Batalkan</a>'
-                +'<a href="<?php echo site_url('invoice/update_to_process/') ?>'+response[0]['invoice_id']+'" class="btn btn-sm btn-primary px-3" >Proses dan kirimkan</a>';
+                    if(response[0]['invoice_status'] === "Menunggu proses penjual"){
+                        dataFooter += '<a href="<?php echo site_url('invoice/cancel/') ?>'+response[0]['invoice_id']+'" class="btn btn-sm btn-danger px-3" onclick="'+confirm+'">Batalkan</a>'
+                        +'<a href="<?php echo site_url('invoice/update_to_process/') ?>'+response[0]['invoice_id']+'" class="btn btn-sm btn-primary px-3" >Proses dan kirimkan</a>';
+                    }else if(response[0]['invoice_status'] === "Sedang dikirim"){
+                        dataFooter += '<button type="button" class="btn btn-sm btn-secondary px-3" data-dismiss="modal">Close</button>';
+                    }else if(response[0]['invoice_status'] === "Sudah diterima"){
+                        dataFooter += '<button type="button" class="btn btn-sm btn-secondary px-3" data-dismiss="modal">Close</button>';
+                    }else if(response[0]['invoice_status'] === "Dibatalkan"){
+                        dataFooter += '<button type="button" class="btn btn-sm btn-secondary px-3" data-dismiss="modal">Close</button>';
+                    }
                 <?php endif; ?>
 
-                document.getElementById('footer').innerHTML = dataFooter;
                 document.getElementById('content').innerHTML = data;
+                document.getElementById('footer').innerHTML = dataFooter;
             }
         });
     }

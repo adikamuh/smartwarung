@@ -3,7 +3,7 @@
 	<div class="row no-gutters slider-text align-items-center justify-content-center">
 		<div class="col-md-9 ftco-animate text-center">
 		<p class="breadcrumbs" style="color: black;"><span class="mr-2" ><a href="<?php echo base_url(); ?>" style="color: black;">Home</a></span> <span style="color: black;">Profile</span></p>
-		<h1 class="mb-0 bread" style="color: black;"><?php echo $this->session->userdata('name') ?></h1>
+		<h1 class="mb-0 bread" style="color: black;"><?php echo $user['name'] ?></h1>
 		</div>
 	</div>
 	</div>
@@ -14,14 +14,7 @@
         <div class="row justify-content-center">
             <div class="col-md-10 mb-5 text-center">
                 <ul class="product-category">
-                <?php if($this->session->userdata('role') == 0): ?>
-                <li><a href="<?php echo site_url('profile')?>">Profile</a></li>
-                <li><a class="active" href="<?php echo site_url('profile/order') ?>">Pesanan saya</a></li>
-                <?php elseif($this->session->userdata('role') == 1): ?>
-                <li><a href="<?php echo site_url('profile')?>">Profile</a></li>
-                <li><a href="<?php echo site_url('profile/etalase') ?>">Etalase</a></li>
-                <li><a class="active" href="<?php echo site_url('profile/order') ?>">Pesanan masuk</a></li>
-                <?php endif; ?>              
+                <?php include APPPATH.'views/profile/menu.php'; ?>
                 </ul>
             </div>
         </div>
@@ -44,13 +37,23 @@
                                 </div>
                                 <div class="col-sm-4" style="border-left-style:solid;">
                                     <span>Status: <br> 
-                                        <span class="text-warning"><?php echo $invoice['invoice_status'] ?></span></span>
+                                    <?php if($invoice['invoice_status'] == "Menunggu proses penjual"): ?>
+                                        <span class="text-warning"><?php echo $invoice['invoice_status'] ?></span>
+                                    <?php elseif($invoice['invoice_status'] == "Sedang dikirim"): ?>
+                                        <span class="text-info"><?php echo $invoice['invoice_status'] ?></span>
+                                    <?php elseif($invoice['invoice_status'] == "Sudah diterima"): ?>
+                                        <span class="text-success"><?php echo $invoice['invoice_status'] ?></span>
+                                    <?php elseif($invoice['invoice_status'] == "Dibatalkan"): ?>
+                                        <span class="text-danger"><?php echo $invoice['invoice_status'] ?></span>
+                                    <?php endif; ?>
+                                    </span>
+                                    
                                 </div>
                             </div>
                             <div class="row mt-4" >
                                 <div class="offset-sm-8 col-sm-4">
                                     <button class="btn btn-sm btn-primary px-4 float-right" data-toggle="modal" data-target="#modal" onclick="get_details('<?php echo $invoice['invoice_id'] ?>')">Detail belanja</button>
-                                    <input type="text" id="details" value="<?php echo $invoice['invoice_id'] ?>" hidden>
+                                    <!-- <input type="text" id="details" value="<?php echo $invoice['invoice_id'] ?>" hidden> -->
                                 </div>
                             </div>
                         </div>

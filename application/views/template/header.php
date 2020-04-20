@@ -40,7 +40,9 @@
 
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
-	          <li class="nav-item active"><a href="<?php echo base_url() ?>" class="nav-link">Beranda</a></li>
+            <?php if($this->session->userdata('role')!=99): ?>
+            <li class="nav-item active"><a href="<?php echo base_url() ?>" class="nav-link">Beranda</a></li>
+            <?php endif; ?>
 	          <!-- <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Shop</a>
               <div class="dropdown-menu" aria-labelledby="dropdown04">
@@ -84,6 +86,16 @@
               	<!-- <a class="dropdown-item" href="<?php echo site_url('item/create') ?>" class="text-danger">Tambah Barang</a> -->
               	<a class="dropdown-item" href="<?php echo site_url('auth/logout') ?>" class="text-danger" style="color:red;">Logout</a>
               	<!-- <a class="dropdown-item" href="wishlist.html">Wishlist</a>
+                <a class="dropdown-item" href="product-single.html">Single Product</a>
+                <a class="dropdown-item" href="cart.html">Cart</a>
+                <a class="dropdown-item" href="checkout.html">Checkout</a> -->
+              </div>
+              </li>
+            <?php elseif($this->session->userdata('role')==99): ?>
+              <li class="nav-item cta cta-colored dropdown"><a href="<?php echo site_url('profile') ?>" class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="icon-user"></span> <?php echo $this->session->userdata('name') ?></a>
+              <div class="dropdown-menu" aria-labelledby="dropdown04">
+                <a class="dropdown-item" href="<?php echo site_url('auth/logout') ?>" class="text-danger" style="color:red;">Logout</a>
+                <!-- <a class="dropdown-item" href="wishlist.html">Wishlist</a>
                 <a class="dropdown-item" href="product-single.html">Single Product</a>
                 <a class="dropdown-item" href="cart.html">Cart</a>
                 <a class="dropdown-item" href="checkout.html">Checkout</a> -->

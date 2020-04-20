@@ -14,14 +14,7 @@
         <div class="row justify-content-center">
             <div class="col-md-10 mb-5 text-center">
                 <ul class="product-category">
-                    <?php if($this->session->userdata('role') == 0): ?>
-                    <li><a class="active" href="<?php echo site_url('profile')?>">Profile</a></li>
-                    <li><a href="<?php echo site_url('profile/order') ?>">Pesanan saya</a></li>
-                    <?php elseif($this->session->userdata('role') == 1): ?>
-                    <li><a href="<?php echo site_url('profile')?>">Profile</a></li>
-                    <li><a class="active" href="<?php echo site_url('profile/etalase') ?>">Etalase</a></li>
-                    <li><a href="<?php echo site_url('profile/order') ?>">Pesanan masuk</a></li>
-                    <?php endif; ?>
+                <?php include APPPATH.'views/profile/menu.php'; ?>
                 </ul>
             </div>
         </div>
@@ -44,18 +37,24 @@
                             <table class="table">
                                 <thead class="thead-primary">
                                 <tr class="text-center">
+                                <?php if($user['username'] == $this->session->userdata('username') or $this->session->userdata('role') == 99): ?>
                                     <th>&nbsp;</th>
+                                <?php endif; ?>
                                     <th>&nbsp;</th>
                                     <th>Nama Barang</th>
                                     <th>Harga</th>
                                     <th>Stok</th>
+                                <?php if($user['username'] == $this->session->userdata('username') or $this->session->userdata('role') == 99): ?>
                                     <th>Aksi</th>
+                                <?php endif; ?>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <?php foreach($items as $item): ?>
                                 <tr class="text-center">
+                                    <?php if($user['username'] == $this->session->userdata('username') or $this->session->userdata('role') == 99): ?>
                                     <td class=""><a class="btn btn-sm btn-danger px-2" onclick="return confirm('Apakah Anda yakin akan menghapus?');" href="<?php echo site_url('item/delete/').$item['id'] ?>"><span class="ion-ios-close"></span></a></td>
+                                    <?php endif; ?>
                                     
                                     <td class="image-prod"><div class="img" style="background-image:url(<?php $photos = explode(',',$item['photo']); echo base_url('assets/uploads/').$photos[0]?>);"></div></td>
                                     
@@ -70,10 +69,11 @@
                                         <?php echo $item['stock']; ?>
                                     </div>
                                 </td>
-                                    
+                                    <?php if($user['username'] == $this->session->userdata('username') or $this->session->userdata('role') == 99): ?>
                                     <td class="total">
                                         <a href="<?php echo site_url('item/edit/').$item['id'] ?>" class="btn btn-sm btn-warning px-3"> Edit </a>
                                     </td>
+                                    <?php endif; ?>
                                 </tr><!-- END TR-->
                                 <?php endforeach; ?>
                                 </tbody>
