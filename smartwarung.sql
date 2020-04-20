@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 20, 2020 at 03:29 AM
+-- Generation Time: Apr 20, 2020 at 04:30 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.1
 
@@ -102,7 +102,8 @@ CREATE TABLE `invoices` (
 INSERT INTO `invoices` (`id`, `user`, `warung`, `origin`, `origin_id`, `destination`, `destination_id`, `distance`, `delivery_fee`, `billing`, `total`, `status`) VALUES
 ('invoice5e96ff3770461', 'abcd', 'kerabat', 'Telkom University, Jalan Telekomunikasi Jl. Terusan Buah Batu, Sukapura, Bandung, West Java, Indonesia', 'ChIJF6V9W1wo1i0RlY84avKFRIY', 'Sukapura, Bandung, West Java, Indonesia', 'ChIJQXjDl6zpaC4RuiyZXIf658I', 0.5, 1250, 39048, 40298, 'Sudah diterima'),
 ('invoice5e974f6fcf5d9', 'abcd', 'kerabat', 'Telkom University, Jalan Telekomunikasi Jl. Terusan Buah Batu, Sukapura, Bandung, West Java, Indonesia', 'ChIJF6V9W1wo1i0RlY84avKFRIY', 'Institut Teknologi Bandung, Jl. Ganesha, Lebak Siliwangi, Bandung City, West Java, Indonesia', 'ChIJg7HJZ1fmaC4RYXnj3NzjeCQ', 12.8, 32000, 15012, 47012, 'Dibatalkan'),
-('invoice5e9b44017b760', 'abcd', 'kerabat', 'Telkom University, Jalan Telekomunikasi Jl. Terusan Buah Batu, Sukapura, Bandung, West Java, Indonesia', 'ChIJF6V9W1wo1i0RlY84avKFRIY', 'Metro Indah Mall, Kawasan Niaga, Soekarno-Hatta Street Jalan MTC Barat, Sekejati, Bandung City, West Java, Indonesia', 'ChIJk6KqSfHpaC4RVGGFKsMMLto', 10.2, 25500, 75144, 100644, 'Sudah diterima');
+('invoice5e9d8d550bba9', 'abcd', 'kerabat', 'Telkom University, Jalan Telekomunikasi Jl. Terusan Buah Batu, Sukapura, Bandung, West Java, Indonesia', 'ChIJF6V9W1wo1i0RlY84avKFRIY', 'Metro Indah Mall, Kawasan Niaga, Soekarno-Hatta Street Jalan MTC Barat, Sekejati, Bandung City, West Java, Indonesia', 'ChIJk6KqSfHpaC4RVGGFKsMMLto', 10.2, 25500, 45000, 70500, 'Dibatalkan'),
+('invoice5e9dafbdd7896', 'abcd', 'rajawali', 'Pondok Rajawali 12, Jalan Sukabirus, Citeureup, Bandung, West Java, Indonesia', 'ChIJhYoXcKXpaC4RtsIsukYN274', 'D\' Gallery Futsal, Jalan Sukabirus, Citeureup, Bandung, West Java, Indonesia', 'ChIJ4XzVX6XpaC4RG0c8UhI-qnc', 0.1, 250, 12399, 12649, 'Menunggu proses penjual');
 
 -- --------------------------------------------------------
 
@@ -130,10 +131,21 @@ INSERT INTO `invoice_details` (`id`, `item`, `quantity`, `price`) VALUES
 ('invoice5e974f6fcf5d9', 9, 1, 3000),
 ('invoice5e974f6fcf5d9', 10, 1, 12),
 ('invoice5e974f6fcf5d9', 11, 1, 2000),
-('invoice5e9b44017b760', 8, 1, 15000),
-('invoice5e9b44017b760', 9, 12, 3000),
-('invoice5e9b44017b760', 10, 12, 12),
-('invoice5e9b44017b760', 11, 12, 2000);
+('invoice5e9d8d550bba9', 8, 1, 15000),
+('invoice5e9d8d550bba9', 9, 10, 3000),
+('invoice5e9dafbdd7896', 12, 1, 12399);
+
+--
+-- Triggers `invoice_details`
+--
+DELIMITER $$
+CREATE TRIGGER `after_buy_products` AFTER INSERT ON `invoice_details` FOR EACH ROW BEGIN
+	UPDATE items
+    SET items.stock = items.stock-NEW.quantity
+    WHERE items.id = NEW.item;
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -157,10 +169,11 @@ CREATE TABLE `items` (
 --
 
 INSERT INTO `items` (`id`, `username`, `name`, `category`, `stock`, `price`, `description`, `photo`) VALUES
-(8, 'kerabat', 'Vixal', 4, 100, 15000, 'Bersih mengkilap, pembersih lantai', '2598bbcb533db9058ba43648ba8ac0fa.png'),
-(9, 'kerabat', 'Sabun', 4, 12, 3000, 'Wangi', '28afcbffb93c6ca981e4ab86e1868d82.png'),
-(10, 'kerabat', 'Molto', 3, 123, 12, 'Wangi', 'd8376dbd2218a2689366a51cec8667c3.png'),
-(11, 'kerabat', 'Sosis', 2, 100, 2000, 'Enak kenyal', '1257acf21ee00438838c73a97f825a58.png');
+(8, 'kerabat', 'Vixal', 4, 99, 15000, 'Bersih mengkilap, pembersih lantai', '2598bbcb533db9058ba43648ba8ac0fa.png'),
+(9, 'kerabat', 'Sabun', 4, 11, 3000, 'Wangi', '28afcbffb93c6ca981e4ab86e1868d82.png'),
+(10, 'kerabat', 'Molto', 3, 122, 12, 'Wangi', 'd8376dbd2218a2689366a51cec8667c3.png'),
+(11, 'kerabat', 'Sosis', 2, 99, 2000, 'Enak kenyal', '1257acf21ee00438838c73a97f825a58.png'),
+(12, 'rajawali', 'Apaja', 2, 122, 12399, 'asdfadsf', '1f34fe68c8542c3592a2cd4e163ed056.jpg');
 
 -- --------------------------------------------------------
 
@@ -185,7 +198,9 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`name`, `username`, `password`, `phone`, `email`, `role`, `photo`) VALUES
 ('Ulalalalala', 'abcd', 'e2fc714c4727ee9395f324cd2e7f331f', '08123', 'a@b.c', 0, NULL),
 ('admin', 'admin', '21232f297a57a5a743894a0e4a801fc3', '1', '1', 99, NULL),
-('Warung Kerabat', 'kerabat', 'e2fc714c4727ee9395f324cd2e7f331f', '0812', 'a@b.c', 1, '54faf173ad4056a0f391f12c2ecae4c3.png');
+('gallery', 'gallery', 'e2fc714c4727ee9395f324cd2e7f331f', '123', '1@s.c', 1, '7d6019698936a373c869ee6de7ed275e.jpg'),
+('Warung Kerabat', 'kerabat', 'e2fc714c4727ee9395f324cd2e7f331f', '0812', 'a@b.c', 1, '54faf173ad4056a0f391f12c2ecae4c3.png'),
+('Rajawali', 'rajawali', 'e2fc714c4727ee9395f324cd2e7f331f', '0812', 'a@b.cd', 1, '2557a0a8a0e7856fe8b6c5f4908229c8.png');
 
 -- --------------------------------------------------------
 
@@ -197,16 +212,21 @@ CREATE TABLE `warungs` (
   `id` int(11) NOT NULL,
   `username` varchar(255) NOT NULL,
   `place_id` varchar(255) NOT NULL,
+  `lat` varchar(255) NOT NULL,
+  `lng` varchar(255) NOT NULL,
   `address` varchar(255) NOT NULL,
-  `status` enum('Belum diverifikasi','Sudah diverifikasi','','') NOT NULL
+  `status` enum('Belum diverifikasi','Sudah diverifikasi','Verifikasi tidak disetujui','') NOT NULL,
+  `updated_at` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `warungs`
 --
 
-INSERT INTO `warungs` (`id`, `username`, `place_id`, `address`, `status`) VALUES
-(10, 'kerabat', 'ChIJF6V9W1wo1i0RlY84avKFRIY', 'Telkom University, Jalan Telekomunikasi Jl. Terusan Buah Batu, Sukapura, Bandung, West Java, Indonesia', 'Sudah diverifikasi');
+INSERT INTO `warungs` (`id`, `username`, `place_id`, `lat`, `lng`, `address`, `status`, `updated_at`) VALUES
+(10, 'kerabat', 'ChIJF6V9W1wo1i0RlY84avKFRIY', '-6.9766033', '107.6285002', 'Telkom University, Jalan Telekomunikasi Jl. Terusan Buah Batu, Sukapura, Bandung, West Java, Indonesia', 'Sudah diverifikasi', '2020-04-01'),
+(11, 'rajawali', 'ChIJhYoXcKXpaC4RtsIsukYN274', '-6.9796277', '107.6289723', 'Pondok Rajawali 12, Jalan Sukabirus, Citeureup, Bandung, West Java, Indonesia', 'Sudah diverifikasi', '2020-04-20'),
+(14, 'gallery', 'ChIJ4XzVX6XpaC4RG0c8UhI-qnc', '-6.978006', '107.631006', 'D\' Gallery Futsal, Jalan Sukabirus, Citeureup, Bandung, West Java, Indonesia', 'Sudah diverifikasi', '2020-04-20');
 
 --
 -- Indexes for dumped tables
@@ -283,13 +303,13 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `warungs`
 --
 ALTER TABLE `warungs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- Constraints for dumped tables
