@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 14, 2020 at 04:09 PM
+-- Generation Time: Apr 20, 2020 at 03:29 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.1
 
@@ -38,7 +38,7 @@ CREATE TABLE `carts` (
 --
 
 INSERT INTO `carts` (`id`, `username`) VALUES
-('cart5e954667e6f6a', 'ulala');
+('cart5e954667e6f6a', 'abcd');
 
 -- --------------------------------------------------------
 
@@ -51,16 +51,6 @@ CREATE TABLE `cart_details` (
   `item` int(11) NOT NULL,
   `quantity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `cart_details`
---
-
-INSERT INTO `cart_details` (`id`, `item`, `quantity`) VALUES
-('cart5e954667e6f6a', 8, 2),
-('cart5e954667e6f6a', 9, 3),
-('cart5e954667e6f6a', 10, 4),
-('cart5e954667e6f6a', 11, 5);
 
 -- --------------------------------------------------------
 
@@ -101,8 +91,18 @@ CREATE TABLE `invoices` (
   `distance` float NOT NULL,
   `delivery_fee` int(11) NOT NULL,
   `billing` int(11) NOT NULL,
-  `total` int(11) NOT NULL
+  `total` int(11) NOT NULL,
+  `status` enum('Menunggu proses penjual','Sedang dikirim','Sudah diterima','Dibatalkan') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `invoices`
+--
+
+INSERT INTO `invoices` (`id`, `user`, `warung`, `origin`, `origin_id`, `destination`, `destination_id`, `distance`, `delivery_fee`, `billing`, `total`, `status`) VALUES
+('invoice5e96ff3770461', 'abcd', 'kerabat', 'Telkom University, Jalan Telekomunikasi Jl. Terusan Buah Batu, Sukapura, Bandung, West Java, Indonesia', 'ChIJF6V9W1wo1i0RlY84avKFRIY', 'Sukapura, Bandung, West Java, Indonesia', 'ChIJQXjDl6zpaC4RuiyZXIf658I', 0.5, 1250, 39048, 40298, 'Sudah diterima'),
+('invoice5e974f6fcf5d9', 'abcd', 'kerabat', 'Telkom University, Jalan Telekomunikasi Jl. Terusan Buah Batu, Sukapura, Bandung, West Java, Indonesia', 'ChIJF6V9W1wo1i0RlY84avKFRIY', 'Institut Teknologi Bandung, Jl. Ganesha, Lebak Siliwangi, Bandung City, West Java, Indonesia', 'ChIJg7HJZ1fmaC4RYXnj3NzjeCQ', 12.8, 32000, 15012, 47012, 'Dibatalkan'),
+('invoice5e9b44017b760', 'abcd', 'kerabat', 'Telkom University, Jalan Telekomunikasi Jl. Terusan Buah Batu, Sukapura, Bandung, West Java, Indonesia', 'ChIJF6V9W1wo1i0RlY84avKFRIY', 'Metro Indah Mall, Kawasan Niaga, Soekarno-Hatta Street Jalan MTC Barat, Sekejati, Bandung City, West Java, Indonesia', 'ChIJk6KqSfHpaC4RVGGFKsMMLto', 10.2, 25500, 75144, 100644, 'Sudah diterima');
 
 -- --------------------------------------------------------
 
@@ -116,6 +116,24 @@ CREATE TABLE `invoice_details` (
   `quantity` int(11) NOT NULL,
   `price` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `invoice_details`
+--
+
+INSERT INTO `invoice_details` (`id`, `item`, `quantity`, `price`) VALUES
+('invoice5e96ff3770461', 8, 2, 10000),
+('invoice5e96ff3770461', 9, 3, 3000),
+('invoice5e96ff3770461', 10, 4, 12),
+('invoice5e96ff3770461', 11, 5, 2000),
+('invoice5e974f6fcf5d9', 8, 1, 10000),
+('invoice5e974f6fcf5d9', 9, 1, 3000),
+('invoice5e974f6fcf5d9', 10, 1, 12),
+('invoice5e974f6fcf5d9', 11, 1, 2000),
+('invoice5e9b44017b760', 8, 1, 15000),
+('invoice5e9b44017b760', 9, 12, 3000),
+('invoice5e9b44017b760', 10, 12, 12),
+('invoice5e9b44017b760', 11, 12, 2000);
 
 -- --------------------------------------------------------
 
@@ -139,7 +157,7 @@ CREATE TABLE `items` (
 --
 
 INSERT INTO `items` (`id`, `username`, `name`, `category`, `stock`, `price`, `description`, `photo`) VALUES
-(8, 'kerabat', 'Vixal', 4, 100, 10000, 'Bersih mengkilap', '2598bbcb533db9058ba43648ba8ac0fa.png'),
+(8, 'kerabat', 'Vixal', 4, 100, 15000, 'Bersih mengkilap, pembersih lantai', '2598bbcb533db9058ba43648ba8ac0fa.png'),
 (9, 'kerabat', 'Sabun', 4, 12, 3000, 'Wangi', '28afcbffb93c6ca981e4ab86e1868d82.png'),
 (10, 'kerabat', 'Molto', 3, 123, 12, 'Wangi', 'd8376dbd2218a2689366a51cec8667c3.png'),
 (11, 'kerabat', 'Sosis', 2, 100, 2000, 'Enak kenyal', '1257acf21ee00438838c73a97f825a58.png');
@@ -165,8 +183,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`name`, `username`, `password`, `phone`, `email`, `role`, `photo`) VALUES
-('Warung Kerabat', 'kerabat', 'e2fc714c4727ee9395f324cd2e7f331f', '0812', 'a@b.c', 1, '54faf173ad4056a0f391f12c2ecae4c3.png'),
-('Ulalalalala', 'ulala', 'e2fc714c4727ee9395f324cd2e7f331f', '08123', 'a@b.c', 0, NULL);
+('Ulalalalala', 'abcd', 'e2fc714c4727ee9395f324cd2e7f331f', '08123', 'a@b.c', 0, NULL),
+('admin', 'admin', '21232f297a57a5a743894a0e4a801fc3', '1', '1', 99, NULL),
+('Warung Kerabat', 'kerabat', 'e2fc714c4727ee9395f324cd2e7f331f', '0812', 'a@b.c', 1, '54faf173ad4056a0f391f12c2ecae4c3.png');
 
 -- --------------------------------------------------------
 
@@ -187,7 +206,7 @@ CREATE TABLE `warungs` (
 --
 
 INSERT INTO `warungs` (`id`, `username`, `place_id`, `address`, `status`) VALUES
-(10, 'kerabat', 'ChIJF6V9W1wo1i0RlY84avKFRIY', 'Telkom University, Jalan Telekomunikasi Jl. Terusan Buah Batu, Sukapura, Bandung, West Java, Indonesia', 'Belum diverifikasi');
+(10, 'kerabat', 'ChIJF6V9W1wo1i0RlY84avKFRIY', 'Telkom University, Jalan Telekomunikasi Jl. Terusan Buah Batu, Sukapura, Bandung, West Java, Indonesia', 'Sudah diverifikasi');
 
 --
 -- Indexes for dumped tables
@@ -293,7 +312,7 @@ ALTER TABLE `cart_details`
 -- Constraints for table `invoices`
 --
 ALTER TABLE `invoices`
-  ADD CONSTRAINT `invoices_ibfk_1` FOREIGN KEY (`user`) REFERENCES `users` (`username`),
+  ADD CONSTRAINT `invoices_ibfk_1` FOREIGN KEY (`user`) REFERENCES `users` (`username`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `invoices_ibfk_2` FOREIGN KEY (`warung`) REFERENCES `users` (`username`);
 
 --
