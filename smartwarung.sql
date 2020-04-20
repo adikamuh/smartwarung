@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 20, 2020 at 04:30 PM
+-- Generation Time: Apr 20, 2020 at 11:19 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.1
 
@@ -51,6 +51,14 @@ CREATE TABLE `cart_details` (
   `item` int(11) NOT NULL,
   `quantity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `cart_details`
+--
+
+INSERT INTO `cart_details` (`id`, `item`, `quantity`) VALUES
+('cart5e954667e6f6a', 9, 6),
+('cart5e954667e6f6a', 8, 10);
 
 -- --------------------------------------------------------
 
@@ -103,7 +111,9 @@ INSERT INTO `invoices` (`id`, `user`, `warung`, `origin`, `origin_id`, `destinat
 ('invoice5e96ff3770461', 'abcd', 'kerabat', 'Telkom University, Jalan Telekomunikasi Jl. Terusan Buah Batu, Sukapura, Bandung, West Java, Indonesia', 'ChIJF6V9W1wo1i0RlY84avKFRIY', 'Sukapura, Bandung, West Java, Indonesia', 'ChIJQXjDl6zpaC4RuiyZXIf658I', 0.5, 1250, 39048, 40298, 'Sudah diterima'),
 ('invoice5e974f6fcf5d9', 'abcd', 'kerabat', 'Telkom University, Jalan Telekomunikasi Jl. Terusan Buah Batu, Sukapura, Bandung, West Java, Indonesia', 'ChIJF6V9W1wo1i0RlY84avKFRIY', 'Institut Teknologi Bandung, Jl. Ganesha, Lebak Siliwangi, Bandung City, West Java, Indonesia', 'ChIJg7HJZ1fmaC4RYXnj3NzjeCQ', 12.8, 32000, 15012, 47012, 'Dibatalkan'),
 ('invoice5e9d8d550bba9', 'abcd', 'kerabat', 'Telkom University, Jalan Telekomunikasi Jl. Terusan Buah Batu, Sukapura, Bandung, West Java, Indonesia', 'ChIJF6V9W1wo1i0RlY84avKFRIY', 'Metro Indah Mall, Kawasan Niaga, Soekarno-Hatta Street Jalan MTC Barat, Sekejati, Bandung City, West Java, Indonesia', 'ChIJk6KqSfHpaC4RVGGFKsMMLto', 10.2, 25500, 45000, 70500, 'Dibatalkan'),
-('invoice5e9dafbdd7896', 'abcd', 'rajawali', 'Pondok Rajawali 12, Jalan Sukabirus, Citeureup, Bandung, West Java, Indonesia', 'ChIJhYoXcKXpaC4RtsIsukYN274', 'D\' Gallery Futsal, Jalan Sukabirus, Citeureup, Bandung, West Java, Indonesia', 'ChIJ4XzVX6XpaC4RG0c8UhI-qnc', 0.1, 250, 12399, 12649, 'Menunggu proses penjual');
+('invoice5e9dafbdd7896', 'abcd', 'rajawali', 'Pondok Rajawali 12, Jalan Sukabirus, Citeureup, Bandung, West Java, Indonesia', 'ChIJhYoXcKXpaC4RtsIsukYN274', 'D\' Gallery Futsal, Jalan Sukabirus, Citeureup, Bandung, West Java, Indonesia', 'ChIJ4XzVX6XpaC4RG0c8UhI-qnc', 0.1, 250, 12399, 12649, 'Dibatalkan'),
+('invoice5e9db8c5a55ed', 'abcd', 'kerabat', 'Telkom University, Jalan Telekomunikasi Jl. Terusan Buah Batu, Sukapura, Bandung, West Java, Indonesia', 'ChIJF6V9W1wo1i0RlY84avKFRIY', 'IFI Futsal, Jalan Sukabirus, Citeureup, Bandung City, West Java, Indonesia', 'ChIJgRwceq_paC4Rwjqb_J8qFFQ', 4.3, 10750, 165000, 175750, 'Sudah diterima'),
+('invoice5e9dc92c3e69a', 'abcd', 'kerabat', 'Telkom University, Jalan Telekomunikasi Jl. Terusan Buah Batu, Sukapura, Bandung, West Java, Indonesia', 'ChIJF6V9W1wo1i0RlY84avKFRIY', 'Daging sapi lokal, Baleendah, Bandung, West Java, Indonesia', 'ChIJS3eHMXPpaC4RjJCCh6K3rsk', 4.8, 12000, 18000, 30000, 'Dibatalkan');
 
 -- --------------------------------------------------------
 
@@ -125,15 +135,14 @@ CREATE TABLE `invoice_details` (
 INSERT INTO `invoice_details` (`id`, `item`, `quantity`, `price`) VALUES
 ('invoice5e96ff3770461', 8, 2, 10000),
 ('invoice5e96ff3770461', 9, 3, 3000),
-('invoice5e96ff3770461', 10, 4, 12),
-('invoice5e96ff3770461', 11, 5, 2000),
 ('invoice5e974f6fcf5d9', 8, 1, 10000),
 ('invoice5e974f6fcf5d9', 9, 1, 3000),
-('invoice5e974f6fcf5d9', 10, 1, 12),
-('invoice5e974f6fcf5d9', 11, 1, 2000),
 ('invoice5e9d8d550bba9', 8, 1, 15000),
 ('invoice5e9d8d550bba9', 9, 10, 3000),
-('invoice5e9dafbdd7896', 12, 1, 12399);
+('invoice5e9dafbdd7896', 12, 1, 12399),
+('invoice5e9db8c5a55ed', 8, 10, 15000),
+('invoice5e9db8c5a55ed', 9, 5, 3000),
+('invoice5e9dc92c3e69a', 9, 6, 3000);
 
 --
 -- Triggers `invoice_details`
@@ -169,11 +178,10 @@ CREATE TABLE `items` (
 --
 
 INSERT INTO `items` (`id`, `username`, `name`, `category`, `stock`, `price`, `description`, `photo`) VALUES
-(8, 'kerabat', 'Vixal', 4, 99, 15000, 'Bersih mengkilap, pembersih lantai', '2598bbcb533db9058ba43648ba8ac0fa.png'),
-(9, 'kerabat', 'Sabun', 4, 11, 3000, 'Wangi', '28afcbffb93c6ca981e4ab86e1868d82.png'),
-(10, 'kerabat', 'Molto', 3, 122, 12, 'Wangi', 'd8376dbd2218a2689366a51cec8667c3.png'),
-(11, 'kerabat', 'Sosis', 2, 99, 2000, 'Enak kenyal', '1257acf21ee00438838c73a97f825a58.png'),
-(12, 'rajawali', 'Apaja', 2, 122, 12399, 'asdfadsf', '1f34fe68c8542c3592a2cd4e163ed056.jpg');
+(8, 'kerabat', 'Vixal', 1, 89, 15000, 'Bersih mengkilap, pembersih lantai', '2598bbcb533db9058ba43648ba8ac0fa.png'),
+(9, 'kerabat', 'Sabun', 4, 6, 3000, 'Wangi', 'd14b89596d482122d6e37429d53c44cc.png'),
+(12, 'rajawali', 'Apaja', 2, 123, 12399, 'asdfadsf', '1f34fe68c8542c3592a2cd4e163ed056.jpg'),
+(16, 'kerabat', 'Sunlight', 1, 123, 3000, 'Jeruk nipis', '82ef105b29d0e65342b398a7680c2780.jpg');
 
 -- --------------------------------------------------------
 
@@ -199,8 +207,9 @@ INSERT INTO `users` (`name`, `username`, `password`, `phone`, `email`, `role`, `
 ('Ulalalalala', 'abcd', 'e2fc714c4727ee9395f324cd2e7f331f', '08123', 'a@b.c', 0, NULL),
 ('admin', 'admin', '21232f297a57a5a743894a0e4a801fc3', '1', '1', 99, NULL),
 ('gallery', 'gallery', 'e2fc714c4727ee9395f324cd2e7f331f', '123', '1@s.c', 1, '7d6019698936a373c869ee6de7ed275e.jpg'),
-('Warung Kerabat', 'kerabat', 'e2fc714c4727ee9395f324cd2e7f331f', '0812', 'a@b.c', 1, '54faf173ad4056a0f391f12c2ecae4c3.png'),
-('Rajawali', 'rajawali', 'e2fc714c4727ee9395f324cd2e7f331f', '0812', 'a@b.cd', 1, '2557a0a8a0e7856fe8b6c5f4908229c8.png');
+('Warung Kerabat', 'kerabat', 'e2fc714c4727ee9395f324cd2e7f331f', '0812', 'a@b.c', 1, '17cf68a4ff5b1c1f1fe2eb39373d3cfa.jpg'),
+('Rajawali', 'rajawali', 'e2fc714c4727ee9395f324cd2e7f331f', '0812', 'a@b.cd', 1, '2557a0a8a0e7856fe8b6c5f4908229c8.png'),
+('sukapura', 'sukapura', 'e2fc714c4727ee9395f324cd2e7f331f', '08122222', 'adika@b.c', 1, '61f19a0afedc177bb403276b484e5a11.jpg');
 
 -- --------------------------------------------------------
 
@@ -226,7 +235,8 @@ CREATE TABLE `warungs` (
 INSERT INTO `warungs` (`id`, `username`, `place_id`, `lat`, `lng`, `address`, `status`, `updated_at`) VALUES
 (10, 'kerabat', 'ChIJF6V9W1wo1i0RlY84avKFRIY', '-6.9766033', '107.6285002', 'Telkom University, Jalan Telekomunikasi Jl. Terusan Buah Batu, Sukapura, Bandung, West Java, Indonesia', 'Sudah diverifikasi', '2020-04-01'),
 (11, 'rajawali', 'ChIJhYoXcKXpaC4RtsIsukYN274', '-6.9796277', '107.6289723', 'Pondok Rajawali 12, Jalan Sukabirus, Citeureup, Bandung, West Java, Indonesia', 'Sudah diverifikasi', '2020-04-20'),
-(14, 'gallery', 'ChIJ4XzVX6XpaC4RG0c8UhI-qnc', '-6.978006', '107.631006', 'D\' Gallery Futsal, Jalan Sukabirus, Citeureup, Bandung, West Java, Indonesia', 'Sudah diverifikasi', '2020-04-20');
+(14, 'gallery', 'ChIJ4XzVX6XpaC4RG0c8UhI-qnc', '-6.978006', '107.631006', 'D\' Gallery Futsal, Jalan Sukabirus, Citeureup, Bandung, West Java, Indonesia', 'Sudah diverifikasi', '2020-04-20'),
+(15, 'sukapura', 'ChIJQXjDl6zpaC4RuiyZXIf658I', '-6.9699811', '107.6289307', 'Sukapura, Bandung, West Java, Indonesia', 'Belum diverifikasi', '2020-04-20');
 
 --
 -- Indexes for dumped tables
@@ -303,13 +313,13 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `warungs`
 --
 ALTER TABLE `warungs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- Constraints for dumped tables

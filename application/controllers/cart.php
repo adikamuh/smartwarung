@@ -23,7 +23,7 @@ class cart extends CI_Controller {
         $data['cart'] = $this->carts->get_cart($this->session->userdata('username'));
         
         if($data['cart'] == null){
-            // if not exist
+            // if cart not exist
             $id = uniqid('cart');
 
             // echo $id;
@@ -34,8 +34,16 @@ class cart extends CI_Controller {
             $this->session->set_flashdata('success', 'Barang telah ditambahkan dalam keranjang.');
             redirect('cart');
         }else{
-            // if exist
-            $this->carts->store_details($data['cart']['id'],$data);
+            // if cart exist
+
+            $data['cart_details'] = $this->carts->get_one_cart_details($data['cart']['id'],$data['item']['id']);
+            // if cart-details doesn't exist
+            if($data['cart_details']==null){
+                $this->carts->store_details($data['cart']['id'],$data);
+            }else{
+                $quantity = $data['cart_details']['quantity'] + $this->input->post('quantity');
+                $this->carts->update($data['cart_details']['id'],$data['cart_details']['item'],$quantity);
+            }
             
             $this->session->set_flashdata('success', 'Barang telah ditambahkan dalam keranjang.');
             redirect('cart');

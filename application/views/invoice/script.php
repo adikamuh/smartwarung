@@ -23,9 +23,9 @@ function AutocompleteDirectionsHandler(map) {
   this.directionsRenderer.setMap(map);
 
   var originInput = document.getElementById('origin-input');
-  console.log(originInput);
+  // console.log(originInput);
   var destinationInput = document.getElementById('destination-input');
-  console.log(destinationInput);
+  // console.log(destinationInput);
   var modeSelector = document.getElementById('mode-selector');
 
   var originAutocomplete = new google.maps.places.Autocomplete(originInput);
@@ -109,18 +109,22 @@ AutocompleteDirectionsHandler.prototype.route = function() {
           var myroute = response.routes[0]
           me.directionsRenderer.setDirections(response);
 
+          // jarak
           for(var i=0; i<myroute.legs.length; i++){
             total += myroute.legs[i].distance.value;
           }
 
+          // convert ke km
           var newDistance = (total/1000);
           document.getElementById('distance').value   = newDistance.toFixed(1).replace(",", ".");
 
-          var deliveryFee = ((total/1000).toFixed(1)*2500).toFixed(0);
+          // tarif
+          var tarif = 2500;
+          var deliveryFee = ((total/1000).toFixed(1)*tarif).toFixed(0);
           document.getElementById('ongkir').innerHTML = formatNumber(deliveryFee);
           document.getElementById('delivery_fee').value = deliveryFee;
 
-          var billing    = document.getElementById('billing').value;
+          var billing    = document.getElementById('billing').value; //total belanja belum ongkir
           var finalTotal = parseInt(billing) + parseInt(deliveryFee);
           document.getElementById('total').innerHTML  = formatNumber(finalTotal);
           document.getElementById('total_price').value = finalTotal;

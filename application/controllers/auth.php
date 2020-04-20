@@ -32,7 +32,7 @@ class auth extends CI_Controller {
 		$this->load->view('template/header');
 		$this->load->view('auth/register_warung');
 		$this->load->view('template/footer');
-		$this->load->view('auth/script');
+		$this->load->view('auth/script'); //lokasi
 	}
     
     public function store()

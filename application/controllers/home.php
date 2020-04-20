@@ -22,11 +22,13 @@ class home extends CI_Controller {
 		parent::__construct();
 
 		$this->load->model('items');
+		$this->load->model('users');
 	}
 	
 	 public function index()
 	{
 		$data['items'] = $this->items->get_all();
+		$data['warungs'] = $this->users->get_warungs();
 
 		$this->load->view('template/header');
 		$this->load->view('home/index', $data);

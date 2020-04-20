@@ -73,6 +73,36 @@ class profile extends CI_Controller {
         $this->load->view('template/footer');
     }
 
+    public function change_photo($username){
+        $_FILES['photo']['name']    = $_FILES['file']['name'];
+        $_FILES['photo']['type']    = $_FILES['file']['type'];
+        $_FILES['photo']['tmp_name']= $_FILES['file']['tmp_name'];
+        $_FILES['photo']['error']   = $_FILES['file']['error'];
+        $_FILES['photo']['size']    = $_FILES['file']['size'];
+
+        $config['upload_path']      = 'assets/uploads/';
+        $config['allowed_types']    = 'jpg|jpeg|png';
+        $config['max_size']         = '5000';
+        $config['encrypt_name'] 	= true;
+
+        $this->load->library('upload',$config);
+
+        if($this->upload->do_upload('photo')){
+            $upload_data = $this->upload->data();
+            $data = array(
+                'photo' => $upload_data['file_name']
+            );
+            $this->db->where('username',$this->session->userdata('username'));
+            $this->db->update('users',$data);
+
+            $this->session->set_flashdata('success','Foto profile berhasil diperbarui');
+            redirect('profile');
+        }else{
+            $this->session->set_flashdata('errors','Foto profile gagal diperbarui');
+            redirect('profile');
+        }
+    }
+
     public function change_password($username){
         $oldpassword = $this->users->get_password($username);
         echo $oldpassword['password'];
@@ -114,7 +144,7 @@ class profile extends CI_Controller {
         }else{
             $this->users->update($username);
             $this->session->set_flashdata('success','Akun berhasil diperbarui');
-            redirect('profile/show/'.$this->input->post('username'));
+            redirect('profile/');
         }
     }
 

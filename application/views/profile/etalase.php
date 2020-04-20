@@ -80,6 +80,9 @@
                             </table>
                         </div>
                     </div>
+                    <div class="offset-sm-5 col-sm-4 mt-5">
+                        <a href="<?php echo site_url('item/create/') ?>" class="btn btn-primary px-3">Tambah barang</a>
+                    </div>
                 </div>
             </div>
             <!-- endcontent -->

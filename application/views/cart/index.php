@@ -54,7 +54,7 @@
                         
                         <td class="quantity">
                             <div class="input-group mb-3">
-                            <input type="text" name="quantity[]" class="quantity form-control input-number" value="<?php echo $item['quantity'] ?>" min="1" max="100">
+                            <input type="number" name="quantity[]" class="quantity form-control input-number" value="<?php echo $item['quantity'] ?>" min="1" max="<?php echo $item['stock'] ?>">
                         </div>
                         </td>
                         

@@ -74,7 +74,8 @@
                 <li class="nav-item cta cta-colored dropdown"><a href="<?php echo site_url('profile') ?>" class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="icon-user"></span> <?php echo $this->session->userdata('name') ?></a>
                 <div class="dropdown-menu" aria-labelledby="dropdown04">
                   <a class="dropdown-item" href="<?php echo site_url('profile') ?>" class="text-danger">Profile</a>
-                  <a class="dropdown-item" href="<?php echo site_url('profile/etalase') ?>" class="text-danger">Etalase</a>
+                  <a class="dropdown-item" href="<?php echo site_url('profile/etalase/').$this->session->userdata('username') ?>" class="text-danger">Etalase</a>
+                  <a class="dropdown-item" href="<?php echo site_url('item/create/') ?>" class="text-danger">Tambah barang</a>
                   <a class="dropdown-item" href="<?php echo site_url('profile/order') ?>" class="text-danger">Pesanan masuk</a>
                   <a class="dropdown-item" href="<?php echo site_url('auth/logout') ?>" class="text-danger" style="color:red;">Logout</a>
                 </div>
@@ -94,7 +95,7 @@
               <li class="nav-item cta cta-colored dropdown"><a href="<?php echo site_url('profile') ?>" class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="icon-user"></span> <?php echo $this->session->userdata('name') ?></a>
               <div class="dropdown-menu" aria-labelledby="dropdown04">
                 <a class="dropdown-item" href="<?php echo site_url('profile') ?>" class="text-danger">Profile</a>
-                <a class="dropdown-item" href="<?php echo site_url('profile') ?>" class="text-danger">Pesanan saya</a>
+                <a class="dropdown-item" href="<?php echo site_url('profile/order') ?>" class="text-danger">Pesanan saya</a>
               	<a class="dropdown-item" href="<?php echo site_url('auth/logout') ?>" class="text-danger" style="color:red;">Logout</a>
               	<!-- <a class="dropdown-item" href="wishlist.html">Wishlist</a>
                 <a class="dropdown-item" href="product-single.html">Single Product</a>

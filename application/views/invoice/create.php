@@ -95,7 +95,7 @@
                             <p class="d-flex">
                                 <span>Total Belanja</span>
                                 <span><?php echo "Rp ".number_format($total, 0, ".", ".") ?></span>
-                            <input type="number" name="billing" value="<?php echo $total ?>" hidden id="billing">
+                                <input type="number" name="billing" value="<?php echo $total ?>" hidden id="billing">
                         </p>
                         <p class="d-flex">
                             <span>Ongkos Kirim</span>

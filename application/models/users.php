@@ -65,6 +65,7 @@ class users extends CI_Model {
     public function get_warungs(){
         $this->db->from('users');
         $this->db->join('warungs','users.username = warungs.username');
+        $this->db->order_by('updated_at','DESC');
         return $this->db->get()->result_array();
     }
 
