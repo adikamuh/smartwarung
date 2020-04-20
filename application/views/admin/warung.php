@@ -49,11 +49,12 @@
                                     
                                     <td class="" style="width: 15%"><p><?php echo $warung['phone']; ?></p></td>
 
-                                    <td class="" style="width: 10%"><p class="p-2 text-small <?php echo ($warung['status'] == 'Sudah diverifikasi'? 'bg-info text-white':'bg-warning text-dark') ?>"><?php echo $warung['status']; ?></p></td>
+                                    <td class="" style="width: 10%"><p class="p-2 text-small <?php echo ($warung['status'] == 'Sudah diverifikasi'? 'bg-info text-white':($warung['status']=='Belum diverifikasi'?'bg-warning text-dark':'bg-danger text-light')) ?>"><?php echo $warung['status']; ?></p></td>
                                     
                                     <td class="" style="width: 10%">
                                         <a href="<?php  ?>" class="btn btn-sm btn-warning px-3 mb-2"> Edit </a>
                                         <a href="<?php echo site_url('admin/approve/').$warung['username'] ?>" class="btn btn-sm btn-info px-3 mb-2"> Approve </a>
+                                        <a href="<?php echo site_url('admin/unapprove/').$warung['username'] ?>" class="btn btn-sm btn-dark text-white px-3 mb-2"> Unapprove </a>
                                         <a href="<?php echo site_url('admin/delete/').$warung['username'] ?>" class="btn btn-sm btn-danger px-3 mb-2" onclick="return confirm('Apkah Anda yakin ingin menghapus?')"> Hapus </a>
                                     </td>
                                 </tr><!-- END TR-->

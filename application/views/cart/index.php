@@ -29,23 +29,25 @@
                         <tr class="text-center">
                         <th>&nbsp;</th>
                         <th>&nbsp;</th>
-                        <th>Nama Barang</th>
+                        <th>Nama Warung</th>
                         <th>Harga</th>
                         <th>Jumlah</th>
                         <th>Total</th>
                         </tr>
                     </thead>
                     <tbody>
-                    <form action="<?php echo site_url('cart/update/') ?>" method="post" hidden>
+                    <form action="<?php echo site_url('cart/update/') ?>" method="post" id="target" hidden>
                     <?php $total=0;foreach($carts as $item): ?>
                         <tr class="text-center">
                         <td class="product-remove"><a onclick="return confirm('Apakah Anda yakin akan menghapus?');" href="<?php echo site_url('cart/delete/').$item['item'] ?>"><span class="ion-ios-close"></span></a></td>
                         
-                        <td class="image-prod"><div class="img" style="background-image:url(<?php $photos = explode(',',$item['photo']); echo base_url('assets/uploads/').$photos[0]?>);"></div></td>
-                        
-                        <td class="product-name">
-                            <h3><?php echo $item['name'] ?></h3>
-                            <p><?php echo $item['description'] ?></p>
+                        <td class="image-prod"><div class="img mb-1" style="background-image:url(<?php $photos = explode(',',$item['photo']); echo base_url('assets/uploads/').$photos[0]?>);"></div>
+                    </td>
+                    
+                    <td class="product-name">
+                        <h5><?php echo $item['name'] ?></h5>
+                        <p><?php echo $item['description'] ?></p>
+                        <a href="<?php echo site_url('profile/show/').$item['warung_username'] ?>"><?php echo $item['warung_name'] ?></a>
                         </td>
                         
                         <td class="price"><?php echo "Rp ".number_format($item['price'], 0, ".", ".") ?></td>

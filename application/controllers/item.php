@@ -8,6 +8,7 @@ class item extends CI_Controller {
 
         $this->load->model('items');
         $this->load->model('categories');
+        $this->load->model('users');
         $this->load->library('form_validation');
     }
 
@@ -82,6 +83,7 @@ class item extends CI_Controller {
 
     public function show($id){
         $data['item'] = $this->items->get_one_id($id);
+        $data['warung'] = $this->users->get_username($data['item']['username']);
 
         $this->load->view('template/header');
         $this->load->view('item/show',$data);

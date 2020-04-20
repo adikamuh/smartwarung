@@ -114,9 +114,7 @@ class auth extends CI_Controller {
 			}
 		}else{
 			$this->session->set_flashdata('errors', 'Register gagal!');
-			$this->load->view('template/header');
-			$this->load->view('auth/register_warung');
-			$this->load->view('template/footer');
+			redirect('auth/register_warung');
 		}		
 	}
 

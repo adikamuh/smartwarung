@@ -7,6 +7,7 @@ class admin extends CI_Controller{
         parent::__construct();
 
         $this->load->model('users');
+        $this->load->helper('date');
     }
 
     public function index(){
@@ -39,7 +40,8 @@ class admin extends CI_Controller{
 
     public function approve($username){
         $data = array(
-            'status' => 'Sudah diverifikasi'
+            'status' => 'Sudah diverifikasi',
+            'updated_at' => date("Y-m-d")
         );
 
         $this->db->where('username',$username);
@@ -48,6 +50,22 @@ class admin extends CI_Controller{
             redirect('admin');
         }else {
             $this->session->set_flashdata('errors','Warung gagal diverifikasi');
+            redirect('admin');
+        }
+    }
+    
+    public function unapprove($username){
+        $data = array(
+            'status' => 'Verifikasi tidak disetujui',
+            'updated_at' => date("Y-m-d")
+        );
+        
+        $this->db->where('username',$username);
+        if($this->db->update('warungs',$data)){
+            $this->session->set_flashdata('success','Status warung berhasil diperbarui!');
+            redirect('admin');
+        }else {
+            $this->session->set_flashdata('errors','Status warung gagal diperbarui');
             redirect('admin');
         }
     }

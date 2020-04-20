@@ -64,6 +64,14 @@ class invoices extends CI_Model {
 
     }
 
+    public function get_invoice_details_items($id){
+        $this->db->select('items.id item_id,items.stock item_stock, invoice_details.quantity quantity');
+        $this->db->from('invoice_details');
+        $this->db->join('items','invoice_details.item = items.id');
+        $this->db->where('invoice_details.id',$id);
+        return $this->db->get()->result_array();
+    }
+
     public function get_invoice_details($username,$id){
         $this->db->select('
         items.photo item_photo, items.name item_name, items.id item_id,

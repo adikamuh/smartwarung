@@ -38,8 +38,10 @@
         infowindow.close();
         marker.setVisible(false);
         var place = autocomplete.getPlace();
-        console.log(place.place_id);
+        console.log(place.geometry.location.lat(),place.geometry.location.lng());
         document.getElementById('place').value = place.place_id;
+        document.getElementById('lat').value = place.geometry.location.lat();
+        document.getElementById('lng').value = place.geometry.location.lng();
         if (!place.geometry) {
         // User entered the name of a Place that was not suggested and
         // pressed the Enter key, or the Place Details request failed.

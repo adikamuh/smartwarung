@@ -10,6 +10,7 @@ class profile extends CI_Controller {
         $this->load->model('items');
 
         $this->load->library('form_validation');
+        $this->load->helper('date');
     }
 
     public function index(){
@@ -19,19 +20,27 @@ class profile extends CI_Controller {
         $this->load->view('template/header');
         $this->load->view('profile/index',$data);
         $this->load->view('template/footer');
+        if ($this->session->userdata('role')==1) {
+            $data['warung'] = $this->users->get_user_warung($this->session->userdata('username'));
+            $this->load->view('profile/scriptMap',$data);            
+        }
     }
     
     public function show($username){
         if($this->session->userdata('username')==$username){
             redirect('profile/');
         }
-
+        
         $data['user'] = $this->users->get_username($username);
         $data['active'] = 'index';
-
+        
         $this->load->view('template/header');
         $this->load->view('profile/index',$data);
         $this->load->view('template/footer');
+        if ($data['user']['role']==1) {
+            $data['warung'] = $this->users->get_user_warung($data['user']['username']);
+            $this->load->view('profile/scriptMap',$data);            
+        }
     }
 
     public function order(){

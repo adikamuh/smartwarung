@@ -50,12 +50,13 @@
                     </p>
                 </div> -->
                 <p class="price" ><span style="font-size: 20px;"><?php echo "Rp ".number_format($item['price'], 0, ".", ".") ?></span></p>
+                <span class="mr-2 font-weight-bold">Warung:</span><a href="<?php echo site_url('profile/show/').$warung['username'] ?>"><?php echo $warung['name'] ?></a>
                 <p><?php echo $item['description'] ?></p>
                 <?php if($this->session->userdata('role') == 0): ?>
                     <div class="row mt-4">
                         <div class="w-100"></div>
                         <div class="input-group col-md-7 mb-3">
-                            <form action="<?php echo site_url('cart/store/').$item['id'] ?>" class="billing-form" method="post">
+                            <form id="target" action="<?php echo site_url('cart/store/').$item['id'] ?>" class="billing-form" method="post" >
                             <div class="w-100"></div>
                             <div class="form-row">
 
@@ -72,7 +73,7 @@
                         </div>
                         <div class="w-100"></div>
                         <div class="col-md-12">
-                            <p style="color: #000;"><?php echo $item['stock'] ?> Stocks available</p>
+                            <p style="color: #000;"><span id="stock"><?php echo $item['stock'] ?></span> Stocks available</p>
                         </div>
                     </div>
                     <!-- <p><a href="cart.html" class="btn btn-black py-3 px-5">Add to Cart</a></p> -->

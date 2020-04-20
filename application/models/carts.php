@@ -15,11 +15,13 @@ class carts extends CI_Model {
         $this->db->select(
             'carts.id,carts.username, 
             cart_details.item,cart_details.quantity, 
-            items.id item_id,items.price,items.description,items.photo,items.name,items.username username_warung'
+            items.id item_id,items.price,items.description,items.photo,items.name,items.username username_warung,
+            users.username warung_username, users.name warung_name'
         );
         $this->db->from('carts');
         $this->db->join('cart_details', 'carts.id = cart_details.id');
         $this->db->join('items', 'items.id = cart_details.item');
+        $this->db->join('users', 'items.username = users.username');
         $this->db->where('carts.username', $username);
         return $this->db->get()->result_array();
     }

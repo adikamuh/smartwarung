@@ -55,11 +55,13 @@
             <!-- endcontent -->
         </div>
         <div class="row mt-5">
-        <div class="col text-center">
-        <div class="block-27">
+            <?php if($user['role']==1): ?>
+                <div class="container-fluid">
+                    <div id="map" class="mb-3" style="width: 100%;height:400px;"></div>
+                    <span class="" style="font-weight: bold">Alamat: </span><span id="address"></span>
+                </div>
+            <?php endif; ?>
         </div>
-        </div>
-    </div>
     </div>
 </section>
 <!-- Modal -->

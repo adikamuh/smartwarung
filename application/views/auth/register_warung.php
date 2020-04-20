@@ -57,6 +57,8 @@
 								<label for="Address">Alamat</label>
 								<input id="pac-input" class="form-control" type="text" name="address" placeholder="Enter a location">
 								<input type="text" id="place" name="place_id" hidden>
+								<input type="text" id="lat" name="lat" hidden>
+								<input type="text" id="lng" name="lng" hidden>
 							</div>
 						</div>
 					</div>

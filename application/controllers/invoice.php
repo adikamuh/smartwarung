@@ -14,6 +14,12 @@ class invoice extends CI_Controller{
 
     public function create(){
         $data['carts'] = $this->carts->get_all($this->session->userdata('username'));
+        foreach ($data['carts'] as $item ) {
+            if($item['warung_username'] != $data['carts'][0]['warung_username']){
+                $this->session->set_flashdata('errors','Barang yang dibeli harus dari warung yang sama!');
+                redirect('cart');
+            }
+        }
         $data['warungs'] = $this->warungs->get_users_warung($data['carts'][0]['username_warung']);
         // print_r($data['warungs']);
 
@@ -58,6 +64,15 @@ class invoice extends CI_Controller{
 
         $this->db->where('id',$id);
         $this->db->update('invoices',$data);
+
+        $dataStock['item'] = $this->invoices->get_invoice_details_items($id);
+        foreach ($dataStock['item'] as $item) {
+            $dataItem = array(
+                'stock' => $item['item_stock'] + $item['quantity']
+            );
+            $this->db->where('id',$item['item_id']);
+            $this->db->update('items',$dataItem);
+        }
         
         redirect('profile/order');
     }

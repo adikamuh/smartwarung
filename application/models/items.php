@@ -22,6 +22,7 @@ class items extends CI_Model {
         return $this->db->get('items')->row_array();
     }
 
+
     public function get_all(){
         return $this->db->get('items')->result_array();
     }

@@ -39,13 +39,15 @@ class users extends CI_Model {
             $data_warung = array(
                 'address' => $this->input->post('address'),
                 'place_id' => $this->input->post('place_id'),
+                'lat' => $this->input->post('lat'),
+                'lng' => $this->input->post('lng'),
                 'username' => $this->input->post('username'),
                 'status' => 'Belum diverifikasi'
             );
 
             $this->db->insert('users',$data);
             $this->db->insert('warungs',$data_warung);
-            return;
+            print_r($data_warung);
         }
     }
     
@@ -64,6 +66,13 @@ class users extends CI_Model {
         $this->db->from('users');
         $this->db->join('warungs','users.username = warungs.username');
         return $this->db->get()->result_array();
+    }
+
+    public function get_user_warung($username){
+        $this->db->from('users');
+        $this->db->join('warungs','users.username = warungs.username');
+        $this->db->where('users.username',$username);
+        return $this->db->get()->row_array();
     }
 
     public function update($username){
