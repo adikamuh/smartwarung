@@ -50,7 +50,7 @@
     						<div class="overlay"></div>
     					</a>
     					<div class="text py-3 pb-4 px-3 text-center">
-    						<h3><a href="#"><?php echo $warungs[$i]['name'] ?></a></h3>
+    						<h3><a href="<?php echo site_url('profile/show/').$warungs[$i]['username'] ?>"><?php echo $warungs[$i]['name'] ?></a></h3>
     						<div class="d-flex">
 	    					</div>
     					</div>
