@@ -81,7 +81,9 @@
                         </div>
                     </div>
                     <div class="offset-sm-5 col-sm-4 mt-5">
+                    <?php if($this->session->userdata('username')==$user['username']): ?>
                         <a href="<?php echo site_url('item/create/') ?>" class="btn btn-primary px-3">Tambah barang</a>
+                    <?php endif; ?>
                     </div>
                 </div>
             </div>

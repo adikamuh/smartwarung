@@ -29,7 +29,31 @@
                 <span class="mr-2 font-weight-bold">Warung:</span><a href="<?php echo site_url('profile/show/').$warung['username'] ?>"><?php echo $warung['name'] ?></a>
                 <br><br><span class="font-weight-bold">Deskripsi</span>
                 <p><?php echo $item['description'] ?></p>
-                <?php if($this->session->userdata('role') == 0): ?>
+                <?php if($this->session->userdata('role') == null): ?>
+                <div class="row mt-4">
+                    <div class="w-100"></div>
+                    <div class="input-group col-md-7 mb-3">
+                        <form id="target" action="<?php echo site_url('cart/store/').$item['id'] ?>" class="billing-form" method="post" >
+                        <div class="w-100"></div>
+                        <div class="form-row">
+
+                            <div class="col-md-3">
+                                <input type="text" id="quantity" name="quantity" class="form-control input-number" value="1" min="1" max="100">
+                            </div>
+                            <div class="col-md-7 ml-3 my-auto">
+                                <input type="submit" class="btn btn-black py-2 px-3" data-toggle="tooltip" data-placement="top" title="Anda harus login terlebih dahulu" value="Add to cart"></input>
+                            </div>
+                            
+                        </div>
+                        <div class="w-100"></div>
+                        </form>
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="col-md-12">
+                        <p style="color: #000;"><span id="stock"><?php echo $item['stock'] ?></span> Stocks available</p>
+                    </div>
+                </div>
+                <?php elseif($this->session->userdata('role') == 0): ?>
                     <div class="row mt-4">
                         <div class="w-100"></div>
                         <div class="input-group col-md-7 mb-3">
@@ -66,6 +90,7 @@
                         <p class="ml-3"><a href="<?php echo site_url('item/delete/').$item['id'] ?>" onclick="return confirm('Apakah Anda yakin akan menghapus?');" class="btn btn-danger py-2 px-5">Hapus</a></p>
 
                     </div>
+
                     <?php endif;?>
             </div>
         </div>

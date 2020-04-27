@@ -37,7 +37,9 @@
                         <a href="<?php echo base_url('assets/images/no-photo.png') ?>" class="image-popup"><img src="<?php echo base_url('assets/images/no-photo.png') ?>" class="img-fluid" ></a>
                         <?php else: ?>
                             <a href="<?php $photos = explode(',',$user['photo']); echo base_url('assets/uploads/').$photos[0] ?>" class="image-popup mb-3"><img style="width:100%;margin-bottom:10px" src="<?php $photos = explode(',',$user['photo']); echo base_url('assets/uploads/').$photos[0] ?>" class="img-fluid" ></a>
+                            <?php if($this->session->userdata('username')==$user['username']): ?>
                             <a class="btn btn-sm btn-primary py-2 px-5 text-white" style="margin-left: 20%" data-toggle="modal" data-target="#modal-photo">Ganti foto profile</a>
+                            <?php endif ?>
                         <?php endif; ?>
                     </div>
                     <div class="col-lg-8 product-details pl-md-5 ftco-animate">

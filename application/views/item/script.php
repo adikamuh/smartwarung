@@ -11,6 +11,10 @@
                 alert( "Pesanan lebih banyak dari stok yang ada!" );
                 event.preventDefault();
             };
+            <?php if($this->session->userdata('role')==null): ?>
+            alert("Anda harus login terlebih dahulu!");
+            event.preventDefault();
+            <?php endif; ?>
         });
     });
 </script>

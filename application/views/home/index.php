@@ -32,6 +32,34 @@
 	    </div>
     </section>
 
+    <section class="ftco-section">
+    	<div class="container">
+				<div class="row justify-content-center mb-3 pb-3">
+          <div class="col-md-12 heading-section text-center ftco-animate">
+            <h2 class="mb-4">Warung Terdekat</h2>
+          </div>
+        </div>   		
+    	</div>
+    	<div class="container">
+    		<div class="row">
+				<?php $count = count($warungs);for($i=0;$i<4;$i++): ?>
+    			<div class="col-md-6 col-lg-3 ftco-animate">
+    				<div class="product">
+    					<a href="<?php echo site_url('profile/show/').$warungs[$i]['username'] ?>" class="img-prod"><img class="img-fluid" src="<?php $photos = explode(',',$warungs[$i]['photo']); echo base_url('assets/uploads/').$photos[0]?>" alt="">
+    						<span class="status">TERDEKAT!</span>
+    						<div class="overlay"></div>
+    					</a>
+    					<div class="text py-3 pb-4 px-3 text-center">
+    						<h3><a href="#"><?php echo $warungs[$i]['name'] ?></a></h3>
+    						<div class="d-flex">
+	    					</div>
+    					</div>
+    				</div>
+				</div>
+				<?php endfor; ?>
+    		</div>
+    	</div>
+    </section>
 <!-- kamar mandi, laundry, kebersihan, makanan,   -->
 		<section class="ftco-section ftco-category mt-5 ftco-no-pt">
 			<div class="container mt-7">
@@ -77,34 +105,6 @@
 			</div>
 		</section>
 
-    <section class="ftco-section">
-    	<div class="container">
-				<div class="row justify-content-center mb-3 pb-3">
-          <div class="col-md-12 heading-section text-center ftco-animate">
-            <h2 class="mb-4">Warung Terbaru</h2>
-          </div>
-        </div>   		
-    	</div>
-    	<div class="container">
-    		<div class="row">
-				<?php $count = count($warungs);for($i=0;$i<4;$i++): ?>
-    			<div class="col-md-6 col-lg-3 ftco-animate">
-    				<div class="product">
-    					<a href="<?php echo site_url('profile/show/').$warungs[$i]['username'] ?>" class="img-prod"><img class="img-fluid" src="<?php $photos = explode(',',$warungs[$i]['photo']); echo base_url('assets/uploads/').$photos[0]?>" alt="">
-    						<span class="status">BARU!</span>
-    						<div class="overlay"></div>
-    					</a>
-    					<div class="text py-3 pb-4 px-3 text-center">
-    						<h3><a href="#"><?php echo $warungs[$i]['name'] ?></a></h3>
-    						<div class="d-flex">
-	    					</div>
-    					</div>
-    				</div>
-				</div>
-				<?php endfor; ?>
-    		</div>
-    	</div>
-    </section>
     <section class="ftco-section">
     	<div class="container">
 				<div class="row justify-content-center mb-3 pb-3">
