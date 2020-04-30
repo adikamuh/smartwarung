@@ -25,7 +25,16 @@
             </div>
             <div class="col-lg-6 product-details pl-md-5 ftco-animate">
                 <h3 class="h3" style="font-weight: bold;"><?php echo $item['name'] ?></h3>
+
+                
                 <p class="price" ><span style="font-size: 20px;"><?php echo "Rp ".number_format($item['price'], 0, ".", ".") ?></span></p>
+                <div class="rating d-flex">
+                    <span class="mr-2 font-weight-bold">Rating</span>
+                    <p class="text-left mr-4">
+                        <a href="#" class="mr-2"><?php echo round($rating['rating'],1) ?></a>
+                        <a href="#"><span class="ion-ios-star"></span></a>
+                    </p>
+                </div>
                 <span class="mr-2 font-weight-bold">Warung:</span><a href="<?php echo site_url('profile/show/').$warung['username'] ?>"><?php echo $warung['name'] ?></a>
                 <br><br><span class="font-weight-bold">Deskripsi</span>
                 <p><?php echo $item['description'] ?></p>
@@ -92,6 +101,25 @@
                     </div>
 
                     <?php endif;?>
+            </div>
+        </div>
+    </div>
+    <hr class="col-md-8">
+    <div class="container">
+        <div class="offset-md-2 col-md-8">
+            <div class="pt-5 mt-3">
+                <h4 class="mb-5">Ulasan</h4>
+                <ul class="comment-list">
+                    <?php if($reviews==null): ?>
+                        <h6>Belum ada ulasan.</h6>
+                    <?php endif ?>
+                    <?php foreach($reviews as $review): ?>
+                    <li class="comment">
+                        <h6 class="text-dark"><?php echo $review['name'] ?></h6>
+                        <p><?php echo $review['review'] ?></p>
+                    </li>
+                    <?php endforeach ?>
+                </ul>
             </div>
         </div>
     </div>

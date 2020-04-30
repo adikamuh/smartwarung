@@ -46,8 +46,13 @@
                             +'<div class="col-sm-4 text-center" style="border-left: 1px solid rgba(0, 0, 0, 0.1);padding-top:8%">'
                                 +'<span class="text-danger font-weight-bold">Total Harga</span><br>'
                                 +'<span>'+formatNumber(response[i]['details_quantity']*response[i]['details_price'])+'</span>'
-                            +'</div>'
-                        +'</div>';
+                            +'</div>';
+                        if(response[i]['invoice_status']==="Sudah diterima"){
+                            data +='<a href="<?php echo site_url('rating/create/') ?>'+response[i]['item_id']+'" class="mt-2 ml-auto btn btn-sm btn-primary px-3 text-white">Beri Ulasan</a>'
+                                +'</div>';
+                        }else{
+                            data += '</div>';
+                        }
                     }
                     data +=
                         '<hr>'

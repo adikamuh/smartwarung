@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 20, 2020 at 11:19 PM
+-- Generation Time: Apr 30, 2020 at 08:42 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.1
 
@@ -57,8 +57,9 @@ CREATE TABLE `cart_details` (
 --
 
 INSERT INTO `cart_details` (`id`, `item`, `quantity`) VALUES
-('cart5e954667e6f6a', 9, 6),
-('cart5e954667e6f6a', 8, 10);
+('cart5e954667e6f6a', 9, 5),
+('cart5e954667e6f6a', 8, 10),
+('cart5e954667e6f6a', 12, 1);
 
 -- --------------------------------------------------------
 
@@ -186,6 +187,48 @@ INSERT INTO `items` (`id`, `username`, `name`, `category`, `stock`, `price`, `de
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `ratings`
+--
+
+CREATE TABLE `ratings` (
+  `username` varchar(255) NOT NULL,
+  `item` int(11) NOT NULL,
+  `rating` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `ratings`
+--
+
+INSERT INTO `ratings` (`username`, `item`, `rating`) VALUES
+('abcd', 8, 5),
+('abcd', 8, 4),
+('abcd', 9, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `reviews`
+--
+
+CREATE TABLE `reviews` (
+  `username` varchar(255) NOT NULL,
+  `item` int(11) NOT NULL,
+  `review` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `reviews`
+--
+
+INSERT INTO `reviews` (`username`, `item`, `review`) VALUES
+('abcd', 8, 'Barang bagus original'),
+('abcd', 8, 'Mantap gan'),
+('abcd', 9, 'Barang jelek');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -287,6 +330,20 @@ ALTER TABLE `items`
   ADD KEY `users_foods_fk1` (`username`);
 
 --
+-- Indexes for table `ratings`
+--
+ALTER TABLE `ratings`
+  ADD KEY `item` (`item`),
+  ADD KEY `username` (`username`);
+
+--
+-- Indexes for table `reviews`
+--
+ALTER TABLE `reviews`
+  ADD KEY `username` (`username`),
+  ADD KEY `item` (`item`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -358,6 +415,20 @@ ALTER TABLE `invoice_details`
 ALTER TABLE `items`
   ADD CONSTRAINT `category` FOREIGN KEY (`category`) REFERENCES `categories` (`id`),
   ADD CONSTRAINT `users_foods_fk1` FOREIGN KEY (`username`) REFERENCES `users` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `ratings`
+--
+ALTER TABLE `ratings`
+  ADD CONSTRAINT `ratings_ibfk_1` FOREIGN KEY (`username`) REFERENCES `users` (`username`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `ratings_ibfk_2` FOREIGN KEY (`item`) REFERENCES `items` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `reviews`
+--
+ALTER TABLE `reviews`
+  ADD CONSTRAINT `reviews_ibfk_1` FOREIGN KEY (`username`) REFERENCES `users` (`username`),
+  ADD CONSTRAINT `reviews_ibfk_2` FOREIGN KEY (`item`) REFERENCES `items` (`id`);
 
 --
 -- Constraints for table `warungs`

@@ -9,6 +9,8 @@ class item extends CI_Controller {
         $this->load->model('items');
         $this->load->model('categories');
         $this->load->model('users');
+        $this->load->model('ratings');
+        $this->load->model('reviews');
         $this->load->library('form_validation');
     }
 
@@ -93,6 +95,11 @@ class item extends CI_Controller {
     public function show($id){
         $data['item'] = $this->items->get_one_id($id);
         $data['warung'] = $this->users->get_username($data['item']['username']);
+        $data['rating'] = $this->ratings->get($id);
+        if($data['rating'] == null){
+            $data['rating']['rating'] = 0;
+        }
+        $data['reviews'] = $this->reviews->get($id);
 
         $this->load->view('template/header');
         $this->load->view('item/show',$data);
