@@ -20,7 +20,7 @@
                         <div class="col-md-8">
                             <div class="form-group">
                                 <label for="firstname">Ulasan</label>
-                                <textarea name="review" id="description" cols="30" rows="5" class="form-control single-textarea" placeholder="Description"></textarea>
+                                <textarea requiredname="review" id="description" cols="30" rows="5" class="form-control single-textarea" placeholder="Description"></textarea>
                             </div>
                         </div>
                         <div class="col-md-3">

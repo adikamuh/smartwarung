@@ -47,12 +47,14 @@
                                 +'<span class="text-danger font-weight-bold">Total Harga</span><br>'
                                 +'<span>'+formatNumber(response[i]['details_quantity']*response[i]['details_price'])+'</span>'
                             +'</div>';
+                        <?php if($this->session->userdata('role')==0): ?>
                         if(response[i]['invoice_status']==="Sudah diterima"){
                             data +='<a href="<?php echo site_url('rating/create/') ?>'+response[i]['item_id']+'" class="mt-2 ml-auto btn btn-sm btn-primary px-3 text-white">Beri Ulasan</a>'
                                 +'</div>';
                         }else{
                             data += '</div>';
                         }
+                        <?php endif ?>
                     }
                     data +=
                         '<hr>'
