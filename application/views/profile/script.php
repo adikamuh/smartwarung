@@ -54,6 +54,8 @@
                         }else{
                             data += '</div>';
                         }
+                        <?php else: ?>
+                            data += '</div>';
                         <?php endif ?>
                     }
                     data +=
