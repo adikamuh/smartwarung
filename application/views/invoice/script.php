@@ -143,6 +143,6 @@ function formatNumber (angka) {
 }
 
 </script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD0IiE8DDVHIZJYCT1jmcaJpXtjP6Dftvg&libraries=places&callback=initMap"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&callback=initMap"></script>
 </body>
 </html>
